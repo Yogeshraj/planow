@@ -3,7 +3,8 @@ import DragIcon from "../Icons/DragIcon";
 import SelectIcon from "../Icons/SelectIcon";
 import RemoveIcon from "../Icons/RemoveIcon";
 import { SquareProps } from "@/interfaces/interfaces";
-import { Draggable, Droppable } from "react-beautiful-dnd";
+// import { Draggable, Droppable } from "react-beautiful-dnd";
+import { Draggable, Droppable } from "@hello-pangea/dnd";
 import SelectedIcon from "../Icons/SelectedIcon";
 
 const Square: FC<SquareProps> = ({
@@ -14,6 +15,7 @@ const Square: FC<SquareProps> = ({
   deleteTask,
   completeTask,
   index,
+  boardID,
 }) => {
   const [isMounted, setIsMounted] = useState(false);
 
@@ -36,57 +38,55 @@ const Square: FC<SquareProps> = ({
         </div>
 
         {isMounted ? (
-          <Droppable droppableId={boardTitle}>
+          <Droppable droppableId={boardID}>
             {(provided) => (
               <div
                 className='characters min-h-[32vh] max-h-[32vh] overflow-hidden overflow-y-scroll'
                 {...provided.droppableProps}
                 ref={provided.innerRef}
               >
-                {tasks?.map(({ id, title, completed }, index) => {
-                  return (
-                    <Draggable
-                      key={id}
-                      draggableId={id.toString()}
-                      index={index}
-                    >
-                      {(provided) => (
-                        <div
-                          className='rounded-[10px] border-white border-2 bg-half-white p-1.5 my-2.5 flex justify-between cursor-grab'
-                          ref={provided.innerRef}
-                          {...provided.draggableProps}
-                          {...provided.dragHandleProps}
-                        >
-                          <div className='flex flex-1'>
-                            <DragIcon className='mr-2.5 cursor-grab' />
-                            <div
-                              className={`half-black flex-1 mr-2.5 strikethrough relative ${
-                                completed ? "completed rounded-lg pl-2" : ""
-                              }`}
-                            >
-                              {title}
+                {tasks
+                  .sort((a: any, b: any) => a.position - b.position)
+                  ?.map(({ id, title, completed }, index) => {
+                    return (
+                      <Draggable key={id} draggableId={id} index={index}>
+                        {(provided) => (
+                          <div
+                            className='rounded-[10px] border-white border-2 bg-half-white p-1.5 my-2.5 flex justify-between cursor-grab'
+                            ref={provided.innerRef}
+                            {...provided.draggableProps}
+                            {...provided.dragHandleProps}
+                          >
+                            <div className='flex flex-1'>
+                              <DragIcon className='mr-2.5 cursor-grab' />
+                              <div
+                                className={`half-black flex-1 mr-2.5 strikethrough relative ${
+                                  completed ? "completed rounded-lg pl-2" : ""
+                                }`}
+                              >
+                                {title}
+                              </div>
+                            </div>
+
+                            <div className='flex'>
+                              {!completed ? (
+                                <SelectIcon
+                                  className='mr-2.5 cursor-pointer'
+                                  onClick={() => completeTask(id, boardTitle)}
+                                />
+                              ) : (
+                                <SelectedIcon className='mr-2.5' />
+                              )}
+                              <RemoveIcon
+                                className='cursor-pointer'
+                                onClick={() => deleteTask(id, boardTitle)}
+                              />
                             </div>
                           </div>
-
-                          <div className='flex'>
-                            {!completed ? (
-                              <SelectIcon
-                                className='mr-2.5 cursor-pointer'
-                                onClick={() => completeTask(id, boardTitle)}
-                              />
-                            ) : (
-                              <SelectedIcon className='mr-2.5' />
-                            )}
-                            <RemoveIcon
-                              className='cursor-pointer'
-                              onClick={() => deleteTask(id, boardTitle)}
-                            />
-                          </div>
-                        </div>
-                      )}
-                    </Draggable>
-                  );
-                })}
+                        )}
+                      </Draggable>
+                    );
+                  })}
                 {provided.placeholder}
               </div>
             )}

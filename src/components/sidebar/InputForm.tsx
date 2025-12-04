@@ -13,7 +13,7 @@ const InputForm = () => {
     formState: { isSubmitSuccessful },
   } = useForm();
 
-  const { mainData, updateData }: any = useStore();
+  const { mainData, addTask }: any = useStore();
 
   const [radioState, setRadioState] = useState({
     important: 2,
@@ -31,39 +31,59 @@ const InputForm = () => {
   }, [isSubmitSuccessful]);
 
   const onSubmit = (data: any) => {
-    let boardName;
+    let boardName = "later";
+    let boardID = 5;
     const { inputText, important, urgent } = data;
 
     if (important === "yes" && urgent === "yes") {
       boardName = "Do";
+      boardID = 1;
     } else if (important === "yes" && urgent === "no") {
       boardName = "Schedule";
+      boardID = 2;
     } else if (important === "no" && urgent === "yes") {
       boardName = "Delegate";
+      boardID = 3;
     } else if (important === "no" && urgent === "no") {
       boardName = "Limit";
+      boardID = 4;
     } else if (important === "yes" && urgent === "neutral") {
       boardName = "Schedule";
+      boardID = 2;
     } else if (important === "no" && urgent === "neutral") {
       boardName = "Limit";
+      boardID = 4;
     } else if (important === "neutral" && urgent === "yes") {
       boardName = "Delegate";
+      boardID = 3;
     } else if (important === "neutral" && urgent === "no") {
       boardName = "Limit";
+      boardID = 4;
     } else {
       boardName = "Later";
+      boardID = 5;
     }
 
-    let addNewTask = [
-      ...(mainData[boardName] || []),
-      {
-        id: uuidv4(),
-        title: inputText,
-        completed: false,
-        boardName,
-      },
-    ];
-    updateData({ ...mainData, [boardName]: addNewTask });
+    const tasksInBoard = mainData
+      .filter((task: { board_id: number }) => task.board_id === boardID)
+      .sort(
+        (a: { position: number }, b: { position: number }) =>
+          a.position - b.position
+      );
+
+    console.log("tasksInBoard", tasksInBoard);
+
+    const lastIndex =
+      tasksInBoard.length > 0
+        ? tasksInBoard[tasksInBoard.length - 1].position
+        : -1; // no items yet → new task gets order_index = 0
+
+    addTask({
+      title: inputText,
+      completed: false,
+      board_id: boardID,
+      position: lastIndex + 1,
+    });
   };
 
   return (

@@ -10,6 +10,8 @@
     "release": "standard-version"
   },
   "dependencies": {
+    "@hello-pangea/dnd": "^18.0.1",
+    "@supabase/supabase-js": "^2.86.0",
     "@types/node": "18.15.11",
     "@types/react": "18.0.33",
     "@types/react-dom": "18.0.11",
@@ -19,7 +21,6 @@
     "next": "13.3.0",
     "postcss": "8.4.21",
     "react": "18.2.0",
-    "react-beautiful-dnd": "^13.1.1",
     "react-dom": "18.2.0",
     "react-hook-form": "^7.43.9",
     "tailwindcss": "3.3.1",
@@ -28,8 +29,13 @@
     "zustand": "^4.3.7"
   },
   "devDependencies": {
-    "@types/react-beautiful-dnd": "^13.1.4",
     "@types/uuid": "^9.0.1",
     "standard-version": "^9.5.0"
+  },
+  "overrides": {
+    "@types/react": "18.0.33",
+    "react-redux": {
+      "@types/react": "18.0.33"
+    }
   }
 }
