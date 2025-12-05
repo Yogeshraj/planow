@@ -99,9 +99,9 @@ const SignupForm = ({ setShowLogin, setShowSignup }: any) => {
         </button>
       </form>
 
-      <div className='text-center text-sm text-gray-400 mb-4'>OR</div>
+      {/* <div className='text-center text-sm text-gray-400 mb-4'>OR</div>
 
-      <button className='w-full flex items-center justify-center gap-3 border border-gray-200 py-3 rounded-full hover:bg-gray-50 transition'>
+      <button className='w-full flex items-center justify-center gap-3 border border-gray-200 py-3 rounded-full hover:bg-gray-50 transition mb-6'>
         <Image
           width={20}
           height={20}
@@ -109,9 +109,9 @@ const SignupForm = ({ setShowLogin, setShowSignup }: any) => {
           alt='google'
         />
         Continue with Google
-      </button>
+      </button> */}
 
-      <div className='mt-6 text-center text-sm'>
+      <div className='text-center text-sm'>
         <span>Already have an account?</span>
         <button
           onClick={() => {

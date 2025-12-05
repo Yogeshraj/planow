@@ -75,7 +75,7 @@ const LoginForm = ({ setShowSignup, setShowLogin }: any) => {
         <div className='mb-4 text-center text-red-700'>{signInError}</div>
       )}
 
-      <div className='text-center text-sm text-gray-400 mb-4'>OR</div>
+      {/* <div className='text-center text-sm text-gray-400 mb-4'>OR</div>
 
       <button className='w-full flex items-center justify-center gap-3 border border-gray-200 py-3 rounded-full hover:bg-gray-50 transition mb-3'>
         <Image
@@ -87,7 +87,7 @@ const LoginForm = ({ setShowSignup, setShowLogin }: any) => {
         Continue with Google
       </button>
 
-      <button className='w-full flex items-center justify-center gap-3 border border-gray-200 py-3 rounded-full hover:bg-gray-50 transition'>
+      <button className='w-full flex items-center justify-center gap-3 border border-gray-200 py-3 rounded-full hover:bg-gray-50 transition mb-6'>
         <Image
           width={20}
           height={20}
@@ -95,9 +95,9 @@ const LoginForm = ({ setShowSignup, setShowLogin }: any) => {
           alt='facebook'
         />
         Continue with Facebook
-      </button>
+      </button> */}
 
-      <div className='mt-6 text-center text-sm'>
+      <div className='text-center text-sm'>
         <span>Don’t have an account?</span>
         <button
           onClick={() => {
