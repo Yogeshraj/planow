@@ -1,6 +1,7 @@
 import Quadrants from "@/components/quadrants/Quadrants";
 import SnackbarLayout from "@/components/snackbar/SnackbarLayout";
 import useStore from "@/store/store";
+import { useEffect } from "react";
 
 export default function Home() {
   const {
@@ -9,8 +10,14 @@ export default function Home() {
     snackbar,
     resetSnackbar,
     updateData,
+    reorderTasks,
     boards,
+    fetchData,
   }: any = useStore();
+
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
 
   if (!mainData) {
     return "Loading";
@@ -23,6 +30,7 @@ export default function Home() {
           mainData={mainData}
           deleteTask={deleteTask}
           updateData={updateData}
+          reorderTasks={reorderTasks}
           boards={boards}
         />
       </div>
