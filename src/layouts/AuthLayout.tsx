@@ -62,6 +62,7 @@ const AuthLayout = ({ open, onClose, children }: AuthLayoutProps) => {
             width={120}
             height={40}
             className='m-auto w-auto h-auto object-contain'
+            title='Planow Logo'
           />
         </div>
 
