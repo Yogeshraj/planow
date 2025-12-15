@@ -25,7 +25,7 @@ const Square: FC<SquareProps> = ({
 
   return (
     <div
-      className={`rounded-2xl bg-${color}-100 border border-${color}-400 p-2.5 ${
+      className={`bg-${color}-100 border border-${color}-400 p-2.5 ${
         index === 4 ? `last-square` : ""
       }`}
     >

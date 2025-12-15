@@ -88,7 +88,7 @@ const InputForm = () => {
 
   return (
     <form
-      className='bg-half-purple-100 rounded-2xl p-4 flex flex-col gap-2.5 justify-evenly'
+      className='bg-half-purple-100 p-4 flex flex-col gap-2.5 justify-evenly'
       onSubmit={handleSubmit(onSubmit)}
     >
       <div>

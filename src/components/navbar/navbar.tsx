@@ -26,90 +26,62 @@ const Navbar = ({ userData }: any) => {
 
   return (
     <div className='bg-half-white shadow-default'>
-      <div className='md:container container'>
-        <div className='flex flex-row py-4 justify-between'>
-          <div className='flex items-center flex-wrap'>
-            <Link href='/'>
-              <Image
-                src={Logo}
-                alt='Logo'
-                width={120}
-                height={70}
-                className='m-auto w-auto h-auto object-contain'
-              />
-            </Link>
 
-            <Link href='/'>
-              <div
-                className={`${
-                  router?.route === "/" ? "active" : ""
-                } ml-14 p-2 flex flex-wrap cursor-pointer [&.active]:bg-purple hover:bg-purple hover:text-meteorite-blue rounded-[10px] transition-all after:content-[""] after:absolute after:-bottom-[17px] after:bg-purple after:w-full after:h-1 after:left-0 after:rounded-t-lg relative after:hidden [&.active]:after:block text-grey [&.active]:text-meteorite-blue group bg-white/5 border-2 border-white`}
-              >
-                <DashboardIcon />
-                <span className='pl-2.5 font-semibold'>Dashboard</span>
-              </div>
-            </Link>
+      <div className='flex flex-row justify-between items-center'>
+        <div className='flex items-center flex-wrap'>
+          <Link href='/'>
+            <Image
+              src={Logo}
+              alt='Planow Logo'
+              width={120}
+              height={70}
+              className='m-auto w-auto h-auto object-contain border-r border-solid border-[#1D1A220A] px-1'
+              title='Planow Logo'
+            />
+          </Link>
 
-            {/* <Link href='/all-tasks'>
-              <div
-                className={`${
-                  router?.route === "/all-tasks" ? "active" : ""
-                } ml-5 p-2 flex flex-wrap cursor-pointer [&.active]:bg-purple hover:bg-purple hover:text-meteorite-blue rounded-[10px] transition-all after:content-[""] after:absolute after:-bottom-[17px] after:bg-purple after:w-full after:h-1 after:left-0 after:rounded-t-lg relative after:hidden [&.active]:after:block text-grey [&.active]:text-meteorite-blue group bg-white/5 border-2 border-white`}>
-                <TaskIcon />
-                <span className='pl-2.5 font-semibold'>All Task</span>
-              </div>
-            </Link> */}
-          </div>
-
-          {/* TODO: Login Menu */}
-          {/* <div className='flex items-center flex-wrap'>
-            <Image src={Logo} alt='Logo' />
-            <div className='active ml-14 p-2 flex flex-wrap cursor-pointer [&.active]:bg-purple hover:bg-purple hover:text-meteorite-blue rounded-[10px] transition-all after:content-[""] after:absolute after:-bottom-4 after:bg-purple after:w-full after:h-1 after:left-0 after:rounded-t-lg relative after:hidden [&.active]:after:block text-grey [&.active]:text-meteorite-blue group'>
-              <DashboardIcon />
-              <span className='pl-2.5 font-semibold'>Dashboard</span>
-            </div>
-            <div className='ml-5 p-2 flex flex-wrap cursor-pointer [&.active]:bg-purple hover:bg-purple hover:text-meteorite-blue rounded-[10px] transition-all after:content-[""] after:absolute after:-bottom-4 after:bg-purple after:w-full after:h-1 after:left-0 relative after:hidden [&.active]:after:block text-grey [&.active]:text-meteorite-blue group'>
-              <TaskIcon />
-              <span className='pl-2.5 font-semibold'>All Task</span>
-            </div>
-          </div> */}
-
-          {userData ? (
-            <div className='flex flex-col'>
-              <div> Hello, {userData?.user?.email}</div>
-              <div className='cursor-pointer' onClick={handleLogout}>
-                Logout
-              </div>
-            </div>
-          ) : (
-            <>
-              <div
-                className='p-2 flex flex-wrap cursor-pointer hover:bg-purple hover:text-meteorite-blue rounded-[10px] transition-all text-grey bg-white/5 border-2 border-purple'
-                onClick={() => setShowLogin(true)}
-              >
-                <button>Login</button>
-              </div>
-
-              <AuthLayout open={showLogin} onClose={() => setShowLogin(false)}>
-                <LoginForm
-                  setShowSignup={setShowSignup}
-                  setShowLogin={setShowLogin}
-                />
-              </AuthLayout>
-
-              <AuthLayout
-                open={showSignup}
-                onClose={() => setShowSignup(false)}
-              >
-                <SignupForm
-                  setShowLogin={setShowLogin}
-                  setShowSignup={setShowSignup}
-                />
-              </AuthLayout>
-            </>
-          )}
+          <Link href='/' className={`${router?.route === "/" ? "active" : ""
+            } text-sm px-3 py-2 flex flex-wrap cursor-pointer border-r border-solid border-[#1D1A220A] [&.active]:bg-purple hover:bg-purple hover:text-meteorite-blue transition-all  text-grey [&.active]:text-meteorite-blue group bg-white/5 `}>
+            Dashboard
+          </Link>
+          {/* <Link href='/' className={`${router?.route === "/all-tasks" ? "active" : ""
+            } text-sm px-3 py-2 flex flex-wrap cursor-pointer border-r border-solid border-[#1D1A220A] [&.active]:bg-purple hover:bg-purple hover:text-meteorite-blue transition-all  text-grey [&.active]:text-meteorite-blue group bg-white/5 `}>
+            All Tasks
+          </Link>
+          <Link href='/' className={`${router?.route === "/reports" ? "active" : ""
+            } text-sm px-3 py-2 flex flex-wrap cursor-pointer border-r border-solid border-[#1D1A220A] [&.active]:bg-purple hover:bg-purple hover:text-meteorite-blue transition-all  text-grey [&.active]:text-meteorite-blue group bg-white/5 `}>
+            Reports
+          </Link> */}
         </div>
+
+        {userData ? (
+          <div className='flex gap-2'>
+            <div className='text-sm'> Hello, {userData?.user?.email}</div>
+            <div className='cursor-pointer text-sm' onClick={handleLogout}>
+              Logout
+            </div>
+          </div>
+        ) : (
+          <>
+            <div className='cursor-pointer text-sm px-3' onClick={() => setShowLogin(true)}>Login</div>
+
+            <AuthLayout open={showLogin} onClose={() => setShowLogin(false)}>
+              <LoginForm
+                setShowSignup={setShowSignup}
+                setShowLogin={setShowLogin}
+              />
+            </AuthLayout>
+
+            <AuthLayout open={showSignup} onClose={() => setShowSignup(false)}>
+              <SignupForm
+                setShowLogin={setShowLogin}
+                setShowSignup={setShowSignup}
+              />
+            </AuthLayout>
+          </>
+        )}
       </div>
+
     </div>
   );
 };

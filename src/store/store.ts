@@ -5,7 +5,7 @@ import { supabase } from "../supabase-client";
 const useStore = create(
   persist(
     (set: any, get: any) => ({
-      websiteName: "Smatrix",
+      websiteName: "Planow",
 
       boards: [
         {
@@ -245,10 +245,10 @@ const useStore = create(
             const updated = tasks.find((t) => t.id === task.id);
             return updated
               ? {
-                  ...task,
-                  position: updated.position,
-                  ...(updated.board_id && { board_id: updated.board_id }),
-                }
+                ...task,
+                position: updated.position,
+                ...(updated.board_id && { board_id: updated.board_id }),
+              }
               : task;
           }),
         }));
