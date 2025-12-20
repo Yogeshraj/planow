@@ -1,23 +1,103 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* @import "./typography.css"; */
 
-:root {
-  --foreground-rgb: linear-gradient(0deg, rgba(94, 82, 167, 0.05), rgba(94, 82, 167, 0.05)), #FFFBFF;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+@import "./themes/light.css";
+@import "./themes/dark.css";
+@import "tailwindcss";
+
+@theme inline {
+  --color-qone: var(--core-qone);
+  --color-qtwo: var(--core-qtwo);
+  --color-qthree: var(--core-qthree);
+  --color-qfour: var(--core-qfour);
+  --color-qfive: var(--core-qfive);
+
+  --color-qonebg: var(--core-qonebg);
+  --color-qtwobg: var(--core-qtwobg);
+  --color-qthreebg: var(--core-qthreebg);
+  --color-qfourbg: var(--core-qfourbg);
+  --color-qfivebg: var(--core-qfivebg);
+
+  --color-qoneContainerBg: var(--core-qonecontainerbg);
+  --color-qtwoContainerBg: var(--core-qtwocontainerbg);
+  --color-qthreeContainerBg: var(--core-qthreecontainerbg);
+  --color-qfourContainerBg: var(--core-qfourcontainerbg);
+  --color-qfiveContainerBg: var(--core-qfivecontainerbg);
+
+  --color-qoneContainer: var(--core-qonecontainer);
+  --color-qtwoContainer: var(--core-qtwocontainer);
+  --color-qthreeContainer: var(--core-qthreecontainer);
+  --color-qfourContainer: var(--core-qfourcontainer);
+  --color-qfiveContainer: var(--core-qfivecontainer);
+
+  --color-error: var(--schematics-error);
+  --color-errorbg: var(--schematics-errorbg);
+  --color-errorcontainer: var(--schematics-errorcontainer);
+  --color-errorcontainerbg: var(--schematics-errorcontainerbg);
+  --color-successalt: var(--schematics-successalt);
+  --color-successaltbg: var(--schematics-successaltbg);
+  --color-successaltcontainer: var(--schematics-successaltcontainer);
+  --color-successaltcontainerbg: var(--schematics-successaltcontainerbg);
+  --color-success: var(--schematics-success);
+  --color-successbg: var(--schematics-successbg);
+  --color-successcontainer: var(--schematics-successcontainer);
+  --color-successcontainerbg: var(--schematics-successcontainerbg);
+  --color-warningcontainer: var(--schematics-warningcontainer);
+  --color-warningcontainerbg: var(--schematics-warningcontainerbg);
+  --color-warning: var(--schematics-warning);
+  --color-warningbg: var(--schematics-warningbg);
+  --color-info: var(--schematics-info);
+  --color-infobg: var(--schematics-infobg);
+  --color-infocontainer: var(--schematics-infocontainer);
+  --color-infocontainerbg: var(--schematics-infocontainerbg);
+
+  --color-base: var(--support-base);
+  --color-basebg: var(--support-basebg);
+  --color-surfacecontainerhigh: var(--support-surfacecontainerhigh);
+  --color-surfacecontainer: var(--support-surfacecontainer);
+  --color-surfacecontainerlow: var(--support-surfacecontainerlow);
+  --color-surfacecontainerlowest: var(--support-surfacecontainerlowest);
+  --color-surfacevariant: var(--support-surfacevariant);
+  --color-outlinevariant: var(--support-outlinevariant);
+  --color-outline: var(--support-outline);
+  --color-surfacevariantbg: var(--support-surfacevariantbg);
+  --color-surfacebg: var(--support-surfacebg);
+  --color-surfacedim: var(--support-surfacedim);
+  --color-surfacecontainerhighest: var(--support-surfacecontainerhighest);
+  --color-surfacebright: var(--support-surfacebright);
+  --color-surface: var(--support-surface);
+  --color-backgroundbg: var(--support-backgroundbg);
+  --color-background: var(--support-background);
+
+  --color-logoColorSquare: var(--logo-color-square);
+  --color-logoColorCircle: var(--logo-color-circle);
+  --color-logoColorTriangle: var(--logo-color-triangle);
+  --color-logoColorClose: var(--logo-color-close);
+  --color-logoColorLogoText: var(--logo-color-logo-text);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+html {
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease;
 }
+
+/* * {
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease,
+    border-color 0.25s ease;
+} */
+
+/* :root {
+  color-scheme: light dark;
+} */
 
 body {
-  background: var(--foreground-rgb);
+  background: var(--support-background);
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease,
+    border-color 0.25s ease;
 }
 
 /* width */
@@ -40,11 +120,11 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
-.strikethrough.completed {
-  background: #BEFFDB;
-}
+/* .strikethrough.completed {
+  background: #beffdb;
+} */
 .strikethrough::before {
-  content: '';
+  content: "";
   position: absolute;
   width: 0;
   height: 1px;
@@ -52,7 +132,7 @@ body {
   top: 0;
   bottom: 0;
   margin: auto;
-  transition: all .3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 .strikethrough.completed::before {
   width: 95%;
@@ -98,10 +178,10 @@ body {
   justify-content: flex-end;
 }
 .switch input:first-of-type:checked + label:first-of-type {
-  color: #006C49;
+  color: #006c49;
 }
 .switch input:last-of-type:checked + label:last-of-type {
-  color: #A43A3C;
+  color: #a43a3c;
 }
 .switch__indicator {
   width: 20px;
@@ -110,35 +190,41 @@ body {
   top: 0;
   bottom: 0;
   margin: auto;
-  background: #C9C3DC;
+  background: #c9c3dc;
   border-radius: 50%;
-  transition: transform 600ms cubic-bezier(0.02, 0.94, 0.09, 0.97), background 300ms cubic-bezier(0.17, 0.67, 0.14, 1.03);
+  transition:
+    transform 600ms cubic-bezier(0.02, 0.94, 0.09, 0.97),
+    background 300ms cubic-bezier(0.17, 0.67, 0.14, 1.03);
   transform: translate3d(0.8rem, 0, 0);
   border: 1px solid rgb(209 213 219);
   z-index: 9;
 }
-.switch input#one:checked ~ .switch__indicator, .switch input:first-of-type:checked ~ .switch__indicator  {
-  background: #006C49;
+.switch input#one:checked ~ .switch__indicator,
+.switch input:first-of-type:checked ~ .switch__indicator {
+  background: #006c49;
   transform: translate3d(0.1rem, 0, 0);
   box-shadow: 1px -1px 10px #c9c3dc;
 }
-.switch input#two:checked ~ .switch__indicator, .switch input:nth-of-type(2):checked ~ .switch__indicator {
-  background: #C9C3DC;
+.switch input#two:checked ~ .switch__indicator,
+.switch input:nth-of-type(2):checked ~ .switch__indicator {
+  background: #c9c3dc;
   transform: translate3d(0.8rem, 0, 0);
   box-shadow: 1px -1px 10px #c9c3dc;
 }
-.switch input#three:checked ~ .switch__indicator, .switch input:last-of-type:checked ~ .switch__indicator {
-  background: #A43A3C;
+.switch input#three:checked ~ .switch__indicator,
+.switch input:last-of-type:checked ~ .switch__indicator {
+  background: #a43a3c;
   transform: translate3d(1.4rem, 0, 0);
   box-shadow: 1px -1px 10px #c9c3dc;
 }
-.switch input[type=radio]:not(:checked), .switch input[type=radio]:checked {
+.switch input[type="radio"]:not(:checked),
+.switch input[type="radio"]:checked {
   display: none;
 }
 .last-square {
   @media only screen and (min-width: 1024px) {
     grid-row-start: 1;
-    grid-row-end: 2;
+    grid-row-end: 3;
     grid-column-start: 3;
-  } 
+  }
 }

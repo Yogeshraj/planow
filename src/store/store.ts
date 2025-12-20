@@ -7,38 +7,38 @@ const useStore = create(
     (set: any, get: any) => ({
       websiteName: "Planow",
 
-      boards: [
-        {
-          board_id: 1,
-          boardTitle: "Do",
-          boardSubtitle: "Important & Urgent",
-          boardColor: "green",
-        },
-        {
-          board_id: 2,
-          boardTitle: "Schedule",
-          boardSubtitle: "Important but not Urgent",
-          boardColor: "blue",
-        },
-        {
-          board_id: 3,
-          boardTitle: "Delegate",
-          boardSubtitle: "Not Important but Urgent",
-          boardColor: "yellow",
-        },
-        {
-          board_id: 4,
-          boardTitle: "Limit",
-          boardSubtitle: "Not Important and not Urgent",
-          boardColor: "red",
-        },
-        {
-          board_id: 5,
-          boardTitle: "Later",
-          boardSubtitle: "Put it here decide later...",
-          boardColor: "half-purple",
-        },
-      ],
+      // boards: [
+      //   {
+      //     board_id: 1,
+      //     boardTitle: "Do",
+      //     boardSubtitle: "Important & Urgent",
+      //     boardColor: "green",
+      //   },
+      //   {
+      //     board_id: 2,
+      //     boardTitle: "Schedule",
+      //     boardSubtitle: "Important but not Urgent",
+      //     boardColor: "blue",
+      //   },
+      //   {
+      //     board_id: 3,
+      //     boardTitle: "Delegate",
+      //     boardSubtitle: "Not Important but Urgent",
+      //     boardColor: "yellow",
+      //   },
+      //   {
+      //     board_id: 4,
+      //     boardTitle: "Limit",
+      //     boardSubtitle: "Not Important and not Urgent",
+      //     boardColor: "red",
+      //   },
+      //   {
+      //     board_id: 5,
+      //     boardTitle: "Later",
+      //     boardSubtitle: "Put it here decide later...",
+      //     boardColor: "purple",
+      //   },
+      // ],
       userData: null,
       setUser: (userInfo: any) => {
         set({
@@ -188,7 +188,7 @@ const useStore = create(
           set((state: any) => ({
             ...state,
             mainData: state.mainData.map((task: any) =>
-              task.id === id ? { ...task, completed: true } : task
+              task.id === id ? { ...task, completed: !task.completed } : task
             ),
             snackbar: {
               show: true,
@@ -245,10 +245,10 @@ const useStore = create(
             const updated = tasks.find((t) => t.id === task.id);
             return updated
               ? {
-                ...task,
-                position: updated.position,
-                ...(updated.board_id && { board_id: updated.board_id }),
-              }
+                  ...task,
+                  position: updated.position,
+                  ...(updated.board_id && { board_id: updated.board_id }),
+                }
               : task;
           }),
         }));

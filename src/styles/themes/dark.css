@@ -1,0 +1,137 @@
+@media (prefers-color-scheme: dark) {
+  :root {
+    --core-qone: #cdfdddff;
+    --core-qonebg: #003d24ff;
+    --core-qonecontainer: #0d834cff;
+    --core-qonecontainerbg: #ebfff2ff;
+    --core-qtwo: #d8effeff;
+    --core-qtwobg: #00143dff;
+    --core-qtwocontainer: #083f91ff;
+    --core-qtwocontainerbg: #ebf7ffff;
+    --core-qthree: #fff5cdff;
+    --core-qthreebg: #612704ff;
+    --core-qthreecontainer: #bc660fff;
+    --core-qthreecontainerbg: #fffdebff;
+    --core-qfourcontainer: #621f28ff;
+    --core-qfourcontainerbg: #ffe9ecff;
+    --core-qfour: #ffc5cdff;
+    --core-qfourbg: #46030cff;
+    --core-qfive: #f3f3f5ff;
+    --core-qfivebg: #2c2b3cff;
+    --core-qfivecontainer: #6c6a82ff;
+    --core-qfivecontainerbg: #f9f9fbff;
+
+    --schematics-error: #fecdd2ff;
+    --schematics-errorbg: #680509ff;
+    --schematics-errorcontainer: #871621ff;
+    --schematics-errorcontainerbg: #ffebebff;
+    --schematics-successalt: #bffa8bff;
+    --schematics-successaltbg: #162f00ff;
+    --schematics-successaltcontainer: #214600ff;
+    --schematics-successaltcontainerbg: #e3ffcaff;
+    --schematics-success: #8bfaebff;
+    --schematics-successbg: #00241fff;
+    --schematics-successcontainer: #004b41ff;
+    --schematics-successcontainerbg: #cefff8ff;
+    --schematics-warningcontainer: #562c00ff;
+    --schematics-warningcontainerbg: #ffecd9ff;
+    --schematics-warning: #ffecd9ff;
+    --schematics-warningbg: #291500ff;
+    --schematics-info: #abe7ffff;
+    --schematics-infobg: #003348ff;
+    --schematics-infocontainer: #004562ff;
+    --schematics-infocontainerbg: #def6ffff;
+
+    --support-base: #000000ff;
+    --support-basebg: #ffffffff;
+    --support-surfacecontainerhigh: #171726ff;
+    --support-surfacecontainer: #0e0e19ff;
+    --support-surfacecontainerlow: #0b0b15ff;
+    --support-surfacecontainerlowest: #04040cff;
+    --support-surfacevariant: #34343cff;
+    --support-outlinevariant: #2a2a2dff;
+    --support-outline: #818199ff;
+    --support-surfacevariantbg: #bebecaff;
+    --support-surfacebg: #ddddf4ff;
+    --support-surfacedim: #06060fff;
+    --support-surfacecontainerhighest: #212131ff;
+    --support-surfacebright: #252535ff;
+    --support-surface: #06060fff;
+    --support-backgroundbg: #ddddf4ff;
+    --support-background: #06060fff;
+
+    --logo-color-square: #70f6a7ff;
+    --logo-color-circle: #6fb7f5ff;
+    --logo-color-triangle: #f9e59eff;
+    --logo-color-close: #fa9ea6ff;
+    --logo-color-logo-text: #bdbdd4ff;
+  }
+}
+
+:root[data-theme="dark"] {
+  --core-qone: #cdfdddff;
+  --core-qonebg: #003d24ff;
+  --core-qonecontainer: #0d834cff;
+  --core-qonecontainerbg: #ebfff2ff;
+  --core-qtwo: #d8effeff;
+  --core-qtwobg: #00143dff;
+  --core-qtwocontainer: #083f91ff;
+  --core-qtwocontainerbg: #ebf7ffff;
+  --core-qthree: #fff5cdff;
+  --core-qthreebg: #612704ff;
+  --core-qthreecontainer: #bc660fff;
+  --core-qthreecontainerbg: #fffdebff;
+  --core-qfourcontainer: #621f28ff;
+  --core-qfourcontainerbg: #ffe9ecff;
+  --core-qfour: #ffc5cdff;
+  --core-qfourbg: #46030cff;
+  --core-qfive: #f3f3f5ff;
+  --core-qfivebg: #2c2b3cff;
+  --core-qfivecontainer: #6c6a82ff;
+  --core-qfivecontainerbg: #f9f9fbff;
+
+  --schematics-error: #fecdd2ff;
+  --schematics-errorbg: #680509ff;
+  --schematics-errorcontainer: #871621ff;
+  --schematics-errorcontainerbg: #ffebebff;
+  --schematics-successalt: #bffa8bff;
+  --schematics-successaltbg: #162f00ff;
+  --schematics-successaltcontainer: #214600ff;
+  --schematics-successaltcontainerbg: #e3ffcaff;
+  --schematics-success: #8bfaebff;
+  --schematics-successbg: #00241fff;
+  --schematics-successcontainer: #004b41ff;
+  --schematics-successcontainerbg: #cefff8ff;
+  --schematics-warningcontainer: #562c00ff;
+  --schematics-warningcontainerbg: #ffecd9ff;
+  --schematics-warning: #ffecd9ff;
+  --schematics-warningbg: #291500ff;
+  --schematics-info: #abe7ffff;
+  --schematics-infobg: #003348ff;
+  --schematics-infocontainer: #004562ff;
+  --schematics-infocontainerbg: #def6ffff;
+
+  --support-base: #000000ff;
+  --support-basebg: #ffffffff;
+  --support-surfacecontainerhigh: #171726ff;
+  --support-surfacecontainer: #0e0e19ff;
+  --support-surfacecontainerlow: #0b0b15ff;
+  --support-surfacecontainerlowest: #04040cff;
+  --support-surfacevariant: #34343cff;
+  --support-outlinevariant: #2a2a2dff;
+  --support-outline: #818199ff;
+  --support-surfacevariantbg: #bebecaff;
+  --support-surfacebg: #ddddf4ff;
+  --support-surfacedim: #06060fff;
+  --support-surfacecontainerhighest: #212131ff;
+  --support-surfacebright: #252535ff;
+  --support-surface: #06060fff;
+  --support-backgroundbg: #ddddf4ff;
+  --support-background: #06060fff;
+
+  --logo-color-square: #70f6a7ff;
+  --logo-color-circle: #6fb7f5ff;
+  --logo-color-triangle: #f9e59eff;
+  --logo-color-close: #fa9ea6ff;
+  --logo-color-logo-text: #bdbdd4ff;
+}

@@ -1,0 +1,69 @@
+/* LIGHT */
+:root,
+:root[data-theme="light"] {
+  --core-qone: #0d834cff;
+  --core-qonebg: #ebfff2ff;
+  --core-qonecontainer: #cdfdddff;
+  --core-qonecontainerbg: #003d24ff;
+  --core-qtwo: #083f91ff;
+  --core-qtwobg: #ebf7ffff;
+  --core-qtwocontainer: #d8effeff;
+  --core-qtwocontainerbg: #00143dff;
+  --core-qthree: #bc660fff;
+  --core-qthreebg: #fffdebff;
+  --core-qthreecontainer: #fff5cdff;
+  --core-qthreecontainerbg: #612704ff;
+  --core-qfourcontainer: #ffc5cdff;
+  --core-qfourcontainerbg: #46030cff;
+  --core-qfour: #621f28ff;
+  --core-qfourbg: #ffe9ecff;
+  --core-qfive: #6c6a82ff;
+  --core-qfivebg: #f3f3f5ff;
+  --core-qfivecontainer: #e0dfe4ff;
+  --core-qfivecontainerbg: #2c2b3cff;
+
+  --schematics-error: #871621ff;
+  --schematics-errorbg: #ffebebff;
+  --schematics-errorcontainer: #fecdd2ff;
+  --schematics-errorcontainerbg: #680509ff;
+  --schematics-successalt: #2d6000ff;
+  --schematics-successaltbg: #e3ffcaff;
+  --schematics-successaltcontainer: #bffa8bff;
+  --schematics-successaltcontainerbg: #162f00ff;
+  --schematics-success: #004b41ff;
+  --schematics-successbg: #cefff8ff;
+  --schematics-successcontainer: #8bfaebff;
+  --schematics-successcontainerbg: #001713ff;
+  --schematics-warningcontainer: #fccfa1ff;
+  --schematics-warningcontainerbg: #562c00ff;
+  --schematics-warning: #683b0dff;
+  --schematics-warningbg: #ffecd9ff;
+  --schematics-info: #004562ff;
+  --schematics-infobg: #def6ffff;
+  --schematics-infocontainer: #abe7ffff;
+  --schematics-infocontainerbg: #00212eff;
+
+  --support-base: #ffffffff;
+  --support-basebg: #000000ff;
+  --support-surfacecontainerhigh: #e3e3f7ff;
+  --support-surfacecontainer: #e9e9fbff;
+  --support-surfacecontainerlow: #f0f0feff;
+  --support-surfacecontainerlowest: #ffffffff;
+  --support-surfacevariant: #dedeeaff;
+  --support-outlinevariant: #dedeeaff;
+  --support-outline: #65657dff;
+  --support-surfacevariantbg: #34343cff;
+  --support-surfacebg: #0e0e19ff;
+  --support-surfacedim: #d4d4ebff;
+  --support-surfacecontainerhighest: #ddddf4ff;
+  --support-surfacebright: #f7f7ffff;
+  --support-surface: #f7f7ffff;
+  --support-backgroundbg: #0e0e19ff;
+  --support-background: #f7f7ffff;
+
+  --logo-color-square: #0fbd67ff;
+  --logo-color-circle: #0f5bbcff;
+  --logo-color-triangle: #bc660fff;
+  --logo-color-close: #b81225ff;
+  --logo-color-logo-text: #09093fff;
+}

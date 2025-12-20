@@ -37,63 +37,71 @@ const SignupForm = ({ setShowLogin, setShowSignup }: any) => {
 
   return (
     <>
-      <h2 className='text-center text-2xl font-semibold mb-6'>
+      <h2 className="mb-6 text-center text-2xl font-semibold">
         Sign Up to your account
       </h2>
 
       <form onSubmit={handleSubmit}>
         <input
-          type='email'
-          name='email'
-          placeholder='Your email'
+          type="email"
+          name="email"
+          placeholder="Your email"
           value={form.email}
           onChange={handleChange}
-          className='w-full bg-gray-100 border border-gray-200 rounded-full px-4 py-3 mb-3 outline-none focus:border-blue-500'
+          className="mb-3 w-full rounded-full border border-gray-200 bg-gray-100 px-4 py-3 outline-none focus:border-blue-500"
         />
 
         <input
-          type='text'
-          name='name'
-          placeholder='Your name'
+          type="text"
+          name="name"
+          placeholder="Your name"
           value={form.name}
           onChange={handleChange}
-          className='w-full bg-gray-100 border border-gray-200 rounded-full px-4 py-3 mb-3 outline-none focus:border-blue-500'
+          className="mb-3 w-full rounded-full border border-gray-200 bg-gray-100 px-4 py-3 outline-none focus:border-blue-500"
         />
 
-        <div className='relative mb-4'>
+        <div className="relative mb-4">
           <input
             type={showPassword ? "text" : "password"}
-            name='password'
-            placeholder='Create Password'
+            name="password"
+            placeholder="Create Password"
             value={form.password}
             onChange={handleChange}
-            className='w-full bg-gray-100 border border-gray-200 rounded-full px-4 py-3 outline-none focus:border-blue-500 pr-12'
+            className="w-full rounded-full border border-gray-200 bg-gray-100 px-4 py-3 pr-12 outline-none focus:border-blue-500"
           />
 
           <button
-            type='button'
+            type="button"
             onClick={() => setShowPassword(!showPassword)}
-            className='absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600'
+            className="absolute top-1/2 right-4 -translate-y-1/2 text-gray-400 hover:text-gray-600"
           >
             {showPassword ? "🙈" : "👁️"}
           </button>
         </div>
 
-        <p className='text-[12px] text-gray-500 mb-4 text-center'>
+        <p className="mb-4 text-center text-[12px] text-gray-500">
           By signing up, you confirm that you’ve read and accepted our{" "}
-          <a href='#' className='text-blue-600 hover:underline'>
+          <a
+            href="#"
+            className="text-blue-600 hover:underline"
+            title="User Notice"
+          >
             User Notice
           </a>{" "}
           and{" "}
-          <a href='#' className='text-blue-600 hover:underline'>
+          <a
+            href="#"
+            className="text-blue-600 hover:underline"
+            title="Privacy Policy"
+          >
             Privacy Policy
           </a>
           .
         </p>
 
         <button
-          type='submit'
-          className='w-full bg-meteorite-blue hover:bg-blue-700 text-white transition py-3 font-semibold mb-4 rounded-xl'
+          type="submit"
+          className="bg-meteorite-blue mb-4 w-full rounded-xl py-3 font-semibold text-white transition hover:bg-blue-700"
         >
           Register
         </button>
@@ -111,14 +119,14 @@ const SignupForm = ({ setShowLogin, setShowSignup }: any) => {
         Continue with Google
       </button> */}
 
-      <div className='text-center text-sm'>
+      <div className="text-center text-sm">
         <span>Already have an account?</span>
         <button
           onClick={() => {
             setShowLogin(true);
             setShowSignup(false);
           }}
-          className='ml-1 text-blue-600 hover:underline'
+          className="ml-1 text-blue-600 hover:underline"
         >
           Log in
         </button>
