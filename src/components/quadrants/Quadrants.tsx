@@ -4,13 +4,47 @@ import Square from "./Square";
 import { ColumnType } from "@/utils/enums";
 import { useEffect, useState } from "react";
 import Sidebar from "../sidebar/Sidebar";
+import InputForm from "../sidebar/InputForm";
+
+const boards = [
+  {
+    board_id: 1,
+    boardTitle: "Do",
+    boardSubtitle: "Important and Urgent",
+    boardColor: "green",
+  },
+  {
+    board_id: 2,
+    boardTitle: "Schedule",
+    boardSubtitle: "Important but not Urgent",
+    boardColor: "blue",
+  },
+  {
+    board_id: 3,
+    boardTitle: "Delegate",
+    boardSubtitle: "Not Important but Urgent",
+    boardColor: "yellow",
+  },
+  {
+    board_id: 4,
+    boardTitle: "Limit",
+    boardSubtitle: "Not Important and not Urgent",
+    boardColor: "red",
+  },
+  {
+    board_id: 5,
+    boardTitle: "Later",
+    boardSubtitle: "Put it here decide later...",
+    boardColor: "purple",
+  },
+];
 
 const Quadrants = ({
   mainData,
   deleteTask,
   updateData,
   reorderTasks,
-  boards,
+  // boards,
 }: any) => {
   const handleDeleteTask = (id: string) => {
     deleteTask({ taskId: id });
@@ -223,7 +257,7 @@ const Quadrants = ({
 
   return (
     <DragDropContext onDragEnd={handleOnDragEnd}>
-      <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'>
+      <div className="border-outlinevariant divide-outlinevariant grid grid-cols-1 divide-x divide-y border sm:grid-cols-2 lg:grid-cols-3">
         {boards?.map((board: any, index: number) => (
           <Square
             key={board.board_id}
@@ -239,7 +273,7 @@ const Quadrants = ({
             completeTask={completeTask}
           />
         ))}
-        <Sidebar />
+        <InputForm />
       </div>
     </DragDropContext>
   );

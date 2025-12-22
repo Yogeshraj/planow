@@ -1,43 +1,48 @@
-# Smatrix - Your Productivity Simplified
+# Planow – Your Productivity Simplified
 
-Smatrix is a task management app designed around the Eisenhower Matrix, empowering users to make quick and effective decisions about their tasks. It helps you:
+Planow is a modern task management application built around the **Eisenhower Matrix** philosophy. It empowers you to make quick, effective decisions about your tasks by categorizing them into four distinct quadrants, helping you focus on what truly matters.
 
-- Do: Focus on urgent and important tasks.
-- Schedule: Plan important but non-urgent tasks for the future.
-- Delegate: Assign urgent but less important tasks to others.
-- Limit: Minimize unimportant and non-urgent tasks.
-- Later: Temporarily park undecided tasks.
+[![Check out Planow](https://img.shields.io/badge/Live-Beta-brightgreen)](https://planow.app/)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/f274dc6d-3739-4081-8803-6f4646714556/deploy-status)]()
 
-# Why Smatrix?
+## 🚀 Why Planow?
 
-We all face growing to-do lists. Smatrix helps you focus on what matters, aligning your tasks with your goals and maximizing your productivity.
+We all struggle with endless to-do lists. Planow helps you cut through the noise by using a proven time-management technique:
 
-# How to Use Smatrix
+- **Do (Important & Urgent):** Immediate focus.
+- **Schedule (Important but Not Urgent):** Plan for later.
+- **Delegate (Not Important but Urgent):** Hand off if possible.
+- **Limit (Not Important & Not Urgent):** Minimize or eliminate.
+- **Later:** A flexible parking lot for tasks you haven't decided on yet.
 
-1. Start your day by assessing your to-do list.
-2. Enter tasks and assign them to appropriate quadrants using easy radio buttons.
-3. Take control: do, schedule, delegate, or remove distractions.
+## ✨ Key Features
 
-# Ready to Try?
+- **Intuitive Eisenhower Matrix:** Drag and drop tasks between quadrants to prioritize instantly.
+- **Real-time Sync:** Powered by **Supabase**, your tasks are synced across devices (when logged in).
+- **Optimistic UI:** Fast and responsive interactions with immediate feedback.
+- **Offline Mode:** Keep working even without an internet connection, thanks to local persistence.
+- **Beautiful & Responsive:** A clean, modern interface that works perfectly on desktop and mobile.
+- **Dark/Light Mode:** Seamless theme switching for your preferred working environment.
 
-Check out the beta version: https://smatrix.netlify.app/. (beta)
+## 🛠️ Tech Stack
 
-![MIT License](https://img.shields.io/badge/pre--production-beta-yellow)
+Planow is built with modern, high-performance technologies:
 
-## Tech Stack
+- **Framework:** [Next.js 16 (Canary)](https://nextjs.org/) (React 19)
+- **Language:** [TypeScript](https://www.typescriptlang.org/)
+- **Styling:** [Tailwind CSS 4](https://tailwindcss.com/)
+- **State Management:** [Zustand](https://zustand-demo.pmnd.rs/) with Persistence
+- **Backend/Auth:** [Supabase](https://supabase.com/)
+- **Drag & Drop:** [@hello-pangea/dnd](https://github.com/hello-pangea/dnd)
 
-[![ReactJs](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://react.dev/) [![NextJs](https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)](https://nextjs.org/) [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/) [![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/) [![TypeScript](https://img.shields.io/badge/Zustand-000000?style=for-the-badge&logo=Zustand&logoColor=white)](https://www.zustand-demo.pmnd.rs/)
+## 📬 Feedback & Support
 
-## Badges
+We'd love to hear your thoughts! Connect with us on Twitter:
 
-[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
+[![LinkedIn Contact](https://img.shields.io/badge/LinkedIn-Yogesh%20Raj-0077B6?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/yogeshrajkabilan/)
 
-## Deployed on Netlify
+## [![Twitter Contact](https://img.shields.io/badge/Twitter-@Yogesh__Raj__46-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white)](https://twitter.com/Yogesh_Raj_46)
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/f274dc6d-3739-4081-8803-6f4646714556/deploy-status)](https://app.netlify.com/sites/smatrix/deploys)
+Developed with ❤️ by [Yogesh Raj](https://github.com/Yogeshraj)
 
-## Feedback
-
-Please send your valuable feedbacks in twitter
-
-[![Twitter Contact](https://img.shields.io/badge/Twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white)](https://twitter.com/Yogesh_Raj_46)
+Visit my website [www.yogeshraj.com](https://yogeshraj.com)

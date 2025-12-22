@@ -1,16 +1,20 @@
+"use client";
+
 import useStore from "@/store/store";
 import React, { useEffect, useState } from "react";
 
-const Alltasks = () => {
+const AllTasks = () => {
   const { mainData, boards }: any = useStore();
 
   // TODO: Define props as proper StateProperties
   const [tasks, setTasks] = useState<string[]>([]);
   
   useEffect(() => {
-    boards.length > 0 && boards?.map((data: any) => {
-      setTasks((prevState) => [...prevState, mainData[data]]);
-    });
+    if (boards.length > 0) {
+        boards.map((data: any) => {
+            setTasks((prevState) => [...prevState, mainData[data]]);
+        });
+    }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   
@@ -40,4 +44,4 @@ const Alltasks = () => {
   );
 };
 
-export default Alltasks;
+export default AllTasks;

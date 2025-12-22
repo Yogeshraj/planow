@@ -1,18 +1,22 @@
+"use client";
+
 import Image from "next/image";
 import Logo from "../../../public/logo.svg";
 import DashboardIcon from "../Icons/DashboardIcon";
 import TaskIcon from "../Icons/TaskIcon";
 import Link from "next/link";
-import { useRouter } from "next/router";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 import Login from "@/components/login/login";
 import AuthLayout from "@/layouts/AuthLayout";
 import LoginForm from "@/components/login/login";
 import SignupForm from "../signup/SignupForm";
 import { supabase } from "@/supabase-client";
+import ThemeSwitch from "../themeSwtich";
+import ThemeButtons from "../themeButtons";
 
 const Navbar = ({ userData }: any) => {
-  const router = useRouter();
+  const pathname = usePathname();
   const [showLogin, setShowLogin] = useState(false);
   const [showSignup, setShowSignup] = useState(false);
 
@@ -25,45 +29,77 @@ const Navbar = ({ userData }: any) => {
   };
 
   return (
-    <div className='bg-half-white shadow-default'>
-
-      <div className='flex flex-row justify-between items-center'>
-        <div className='flex items-center flex-wrap'>
-          <Link href='/'>
+    <div className="bg-half-white shadow-default">
+      <div className="flex flex-row items-center justify-between">
+        <div className="mr-auto flex flex-wrap items-center">
+          <Link
+            href="/"
+            className="border-outlinevariant border-r border-solid"
+            title="Home"
+          >
             <Image
               src={Logo}
-              alt='Planow Logo'
-              width={120}
-              height={70}
-              className='m-auto w-auto h-auto object-contain border-r border-solid border-[#1D1A220A] px-1'
-              title='Planow Logo'
+              alt="Planow Logo"
+              width={87}
+              height={32}
+              priority
+              className="m-auto h-auto w-auto object-contain px-1"
+              title="Planow Logo"
             />
           </Link>
 
-          <Link href='/' className={`${router?.route === "/" ? "active" : ""
-            } text-sm px-3 py-2 flex flex-wrap cursor-pointer border-r border-solid border-[#1D1A220A] [&.active]:bg-purple hover:bg-purple hover:text-meteorite-blue transition-all  text-grey [&.active]:text-meteorite-blue group bg-white/5 `}>
+          <Link
+            href="/"
+            className={`${
+              pathname === "/" ? "active" : ""
+            } [&.active]:bg-surfacecontainer hover:bg-surfacecontainer hover:text-backgroundbg text-backgroundbg/40 [&.active]:text-backgroundbg group border-outlinevariant flex cursor-pointer flex-wrap border-r border-solid bg-white/5 px-3 py-[6px] text-sm transition-all [&.active]:font-bold`}
+            title="Dashboard"
+          >
             Dashboard
           </Link>
-          {/* <Link href='/' className={`${router?.route === "/all-tasks" ? "active" : ""
-            } text-sm px-3 py-2 flex flex-wrap cursor-pointer border-r border-solid border-[#1D1A220A] [&.active]:bg-purple hover:bg-purple hover:text-meteorite-blue transition-all  text-grey [&.active]:text-meteorite-blue group bg-white/5 `}>
+          {/* <Link
+            href="/"
+            className={`${
+              pathname === "/all-tasks" ? "active" : ""
+            } [&.active]:bg-surfacecontainer hover:bg-surfacecontainer hover:text-backgroundbg text-backgroundbg/40 [&.active]:text-backgroundbg group border-outlinevariant flex cursor-pointer flex-wrap border-r border-solid bg-white/5 px-3 py-[6px] text-sm transition-all [&.active]:font-bold`}
+            title="All Tasks"
+          >
             All Tasks
           </Link>
-          <Link href='/' className={`${router?.route === "/reports" ? "active" : ""
-            } text-sm px-3 py-2 flex flex-wrap cursor-pointer border-r border-solid border-[#1D1A220A] [&.active]:bg-purple hover:bg-purple hover:text-meteorite-blue transition-all  text-grey [&.active]:text-meteorite-blue group bg-white/5 `}>
+          <Link
+            href="/"
+            className={`${
+              pathname === "/reports" ? "active" : ""
+            } [&.active]:bg-surfacecontainer hover:bg-surfacecontainer hover:text-backgroundbg text-backgroundbg/40 [&.active]:text-backgroundbg group border-outlinevariant flex cursor-pointer flex-wrap border-r border-solid bg-white/5 px-3 py-[6px] text-sm transition-all [&.active]:font-bold`}
+            title="Reports"
+          >
             Reports
           </Link> */}
         </div>
 
+        {/* <div className="border-outlinevariant border-l border-solid px-2 py-[4px]">
+          <ThemeSwitch />
+        </div> */}
+
+        <div className="border-outlinevariant border-l border-solid px-2 py-[4px]">
+          <ThemeButtons />
+        </div>
+
         {userData ? (
-          <div className='flex gap-2'>
-            <div className='text-sm'> Hello, {userData?.user?.email}</div>
-            <div className='cursor-pointer text-sm' onClick={handleLogout}>
+          <div className="border-outlinevariant flex gap-2 border-l border-solid">
+            <div className="text-sm"> Hello, {userData?.user?.email}</div>
+            <div className="cursor-pointer text-sm" onClick={handleLogout}>
               Logout
             </div>
           </div>
         ) : (
           <>
-            <div className='cursor-pointer text-sm px-3' onClick={() => setShowLogin(true)}>Login</div>
+            <div
+              className="border-outlinevariant text-backgroundbg/40 cursor-pointer border-l border-solid px-3 py-[6px] text-sm"
+              onClick={() => setShowLogin(true)}
+            >
+              Login
+            </div>
 
             <AuthLayout open={showLogin} onClose={() => setShowLogin(false)}>
               <LoginForm
@@ -81,7 +117,6 @@ const Navbar = ({ userData }: any) => {
           </>
         )}
       </div>
-
     </div>
   );
 };

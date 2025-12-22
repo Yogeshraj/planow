@@ -1,3 +1,5 @@
+"use client";
+
 import Quadrants from "@/components/quadrants/Quadrants";
 import SnackbarLayout from "@/components/snackbar/SnackbarLayout";
 import useStore from "@/store/store";
@@ -11,7 +13,7 @@ export default function Home() {
     resetSnackbar,
     updateData,
     reorderTasks,
-    boards,
+    // boards,
     fetchData,
   }: any = useStore();
 
@@ -25,7 +27,7 @@ export default function Home() {
 
   return (
     <>
-      <div className='sr-only'>
+      <div className="sr-only">
         <h1>Planow – Prioritize Tasks with the Eisenhower Matrix</h1>
 
         <p>
@@ -57,13 +59,13 @@ export default function Home() {
         </p>
       </div>
 
-      <div className='grid gap-4 min-h-[94vh]'>
+      <div className="grid min-h-[calc(100vh-36px)] gap-4">
         <Quadrants
           mainData={mainData}
           deleteTask={deleteTask}
           updateData={updateData}
           reorderTasks={reorderTasks}
-          boards={boards}
+          // boards={boards}
         />
       </div>
       {snackbar.show && (
