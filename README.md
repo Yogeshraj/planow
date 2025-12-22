@@ -2,10 +2,8 @@
 
 Planow is a modern task management application built around the **Eisenhower Matrix** philosophy. It empowers you to make quick, effective decisions about your tasks by categorizing them into four distinct quadrants, helping you focus on what truly matters.
 
-[![Check out Planow](https://img.shields.io/badge/Live-Beta-brightgreen)](https://smatrix.netlify.app/)
-[![Netlify Status](https://api.netlify.com/api/v1/badges/f274dc6d-3739-4081-8803-6f4646714556/deploy-status)](https://app.netlify.app/sites/smatrix/deploys)
-
----
+[![Check out Planow](https://img.shields.io/badge/Live-Beta-brightgreen)](https://planow.app/)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/f274dc6d-3739-4081-8803-6f4646714556/deploy-status)]()
 
 ## 🚀 Why Planow?
 
@@ -41,8 +39,10 @@ Planow is built with modern, high-performance technologies:
 
 We'd love to hear your thoughts! Connect with us on Twitter:
 
-[![Twitter Contact](https://img.shields.io/badge/Twitter-@Yogesh__Raj__46-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white)](https://twitter.com/Yogesh_Raj_46)
+[![LinkedIn Contact](https://img.shields.io/badge/LinkedIn-Yogesh%20Raj-0077B6?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/yogeshrajkabilan/)
 
----
+## [![Twitter Contact](https://img.shields.io/badge/Twitter-@Yogesh__Raj__46-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white)](https://twitter.com/Yogesh_Raj_46)
 
 Developed with ❤️ by [Yogesh Raj](https://github.com/Yogeshraj)
+
+Visit my website [www.yogeshraj.com](https://yogeshraj.com)
