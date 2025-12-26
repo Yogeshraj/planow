@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import Logo from "../../../public/logo.svg";
 import DashboardIcon from "../Icons/DashboardIcon";
 import TaskIcon from "../Icons/TaskIcon";
 import Link from "next/link";
@@ -12,7 +11,6 @@ import AuthLayout from "@/layouts/AuthLayout";
 import LoginForm from "@/components/login/login";
 import SignupForm from "../signup/SignupForm";
 import { supabase } from "@/supabase-client";
-import ThemeSwitch from "../themeSwtich";
 import ThemeButtons from "../themeButtons";
 
 const Navbar = ({ userData }: any) => {
@@ -21,6 +19,7 @@ const Navbar = ({ userData }: any) => {
   const [showSignup, setShowSignup] = useState(false);
 
   const handleLogout = async () => {
+    console.log("logout");
     const { error } = await supabase.auth.signOut();
     if (error) {
       console.log("signOut Error", error);
@@ -34,16 +33,16 @@ const Navbar = ({ userData }: any) => {
         <div className="mr-auto flex flex-wrap items-center">
           <Link
             href="/"
-            className="border-outlinevariant border-r border-solid"
+            className="border-outlinevariant h-[32px] w-[87px] border-r border-solid px-1"
             title="Home"
           >
             <Image
-              src={Logo}
+              src="/logo.svg"
               alt="Planow Logo"
               width={87}
               height={32}
-              priority
-              className="m-auto h-auto w-auto object-contain px-1"
+              unoptimized
+              className="m-auto block"
               title="Planow Logo"
             />
           </Link>
@@ -86,8 +85,10 @@ const Navbar = ({ userData }: any) => {
         </div>
 
         {userData ? (
-          <div className="border-outlinevariant flex gap-2 border-l border-solid">
-            <div className="text-sm"> Hello, {userData?.user?.email}</div>
+          <div className="border-outlinevariant flex gap-2 border-l border-solid px-2 py-[4px]">
+            <div className="text-sm">
+              Hello, {userData?.user?.user_metadata?.name}
+            </div>
             <div className="cursor-pointer text-sm" onClick={handleLogout}>
               Logout
             </div>

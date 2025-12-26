@@ -57,8 +57,6 @@ const Quadrants = ({
   function handleOnDragEnd(result: any) {
     const { source, destination, draggableId } = result;
 
-    console.log(source, destination);
-
     // If user tries to drop in an unknown destination
     if (!result.destination) return;
 

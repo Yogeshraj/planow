@@ -6,52 +6,21 @@ const useStore = create(
   persist(
     (set: any, get: any) => ({
       websiteName: "Planow",
+      loading: false,
+      snackbar: {
+        show: false,
+        content: "",
+        type: "",
+      },
 
-      // boards: [
-      //   {
-      //     board_id: 1,
-      //     boardTitle: "Do",
-      //     boardSubtitle: "Important & Urgent",
-      //     boardColor: "green",
-      //   },
-      //   {
-      //     board_id: 2,
-      //     boardTitle: "Schedule",
-      //     boardSubtitle: "Important but not Urgent",
-      //     boardColor: "blue",
-      //   },
-      //   {
-      //     board_id: 3,
-      //     boardTitle: "Delegate",
-      //     boardSubtitle: "Not Important but Urgent",
-      //     boardColor: "yellow",
-      //   },
-      //   {
-      //     board_id: 4,
-      //     boardTitle: "Limit",
-      //     boardSubtitle: "Not Important and not Urgent",
-      //     boardColor: "red",
-      //   },
-      //   {
-      //     board_id: 5,
-      //     boardTitle: "Later",
-      //     boardSubtitle: "Put it here decide later...",
-      //     boardColor: "purple",
-      //   },
-      // ],
       userData: null,
       setUser: (userInfo: any) => {
         set({
           userData: userInfo,
         });
       },
+
       mainData: [],
-      snackbar: {
-        show: false,
-        content: "",
-        type: "",
-      },
-      loading: false,
 
       fetchData: async () => {
         set({ loading: true, error: null });
@@ -81,37 +50,6 @@ const useStore = create(
           }
         }
       },
-
-      // addTask: async (task: any) => {
-      //   try {
-      //     const { data, error } = await supabase
-      //       .from("tasks")
-      //       .insert(task)
-      //       .select();
-
-      //     console.log("insertdata", data);
-
-      //     if (error) {
-      //       console.log("insterError", error.message);
-      //       set({
-      //         snackbar: { show: true, content: error.message, type: "error" },
-      //       });
-      //       return;
-      //     }
-
-      //     set((state: any) => {
-      //       console.log("insertstate", state.mainData);
-      //       return {
-      //         mainData: [...state.mainData, ...data],
-      //         snackbar: { show: true, content: "Task added!", type: "success" },
-      //       };
-      //     });
-      //   } catch (err: any) {
-      //     set({
-      //       snackbar: { show: true, content: err.message, type: "error" },
-      //     });
-      //   }
-      // },
 
       addTask: async (task: any) => {
         // Snapshot for rollback
@@ -167,6 +105,62 @@ const useStore = create(
             }));
           }
         } catch (err: any) {
+          set({
+            mainData: previousData,
+            snackbar: {
+              show: true,
+              content: err.message || "Something went wrong",
+              type: "error",
+            },
+          });
+        }
+      },
+
+      updateTaskContent: async (id: string, title: string) => {
+        // Save a snapshot for rollback in case of failure
+        const previousData = get().mainData;
+        const userData = get().userData;
+
+        try {
+          // Optimistic UI Update (Single map - best practice)
+          set((state: any) => ({
+            ...state,
+            mainData: state.mainData.map((task: any) =>
+              task.id === id
+                ? { ...task, title, ...(!userData && { source: "local" }) }
+                : task
+            ),
+            snackbar: {
+              show: true,
+              content: "Task updated successfully!",
+              type: "success",
+            },
+          }));
+
+          console.log("userData", userData);
+          if (userData) {
+            console.log("inside");
+            // Supabase Update
+            const { error } = await supabase
+              .from("tasks")
+              .update({ title })
+              .eq("id", id);
+
+            // Rollback if DB fails
+            if (error) {
+              console.log("error", error);
+              set({
+                mainData: previousData,
+                snackbar: {
+                  show: true,
+                  content: error.message,
+                  type: "error",
+                },
+              });
+            }
+          }
+        } catch (err: any) {
+          // Rollback on unexpected errors
           set({
             mainData: previousData,
             snackbar: {
@@ -257,8 +251,6 @@ const useStore = create(
           const { data, error } = await supabase
             .rpc("reorder_tasks", { payload: tasks }) // tasks is a JS array -> JSON
             .select(); // .select() not required but useful to return rows in some clients
-
-          console.log("updatedServerdata", data);
 
           if (error) {
             set({
@@ -387,8 +379,7 @@ const useStore = create(
     }),
 
     {
-      name: "answer-storage", // unique name
-      // getStorage: () => localStorage, // (optional) by default the 'localStorage' is used
+      name: "answer-storage",
       storage: createJSONStorage(() => localStorage),
     }
   )
