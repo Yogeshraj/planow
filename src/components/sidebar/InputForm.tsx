@@ -36,8 +36,6 @@ const InputForm = () => {
     const { inputText } = data;
     const { important, urgent } = radioState;
 
-    console.log("radioState", radioState);
-
     if (important === 1 && urgent === 1) {
       boardName = "Do";
       boardID = 1;
@@ -73,8 +71,6 @@ const InputForm = () => {
         (a: { position: number }, b: { position: number }) =>
           a.position - b.position
       );
-
-    console.log("tasksInBoard", tasksInBoard);
 
     const lastIndex =
       tasksInBoard.length > 0

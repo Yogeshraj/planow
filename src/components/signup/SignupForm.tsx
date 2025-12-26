@@ -49,6 +49,7 @@ const SignupForm = ({ setShowLogin, setShowSignup }: any) => {
           value={form.email}
           onChange={handleChange}
           className="mb-3 w-full rounded-full border border-gray-200 bg-gray-100 px-4 py-3 outline-none focus:border-blue-500"
+          required
         />
 
         <input
@@ -58,6 +59,7 @@ const SignupForm = ({ setShowLogin, setShowSignup }: any) => {
           value={form.name}
           onChange={handleChange}
           className="mb-3 w-full rounded-full border border-gray-200 bg-gray-100 px-4 py-3 outline-none focus:border-blue-500"
+          required
         />
 
         <div className="relative mb-4">
@@ -68,12 +70,13 @@ const SignupForm = ({ setShowLogin, setShowSignup }: any) => {
             value={form.password}
             onChange={handleChange}
             className="w-full rounded-full border border-gray-200 bg-gray-100 px-4 py-3 pr-12 outline-none focus:border-blue-500"
+            required
           />
 
           <button
             type="button"
             onClick={() => setShowPassword(!showPassword)}
-            className="absolute top-1/2 right-4 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+            className="absolute top-1/2 right-4 -translate-y-1/2 cursor-pointer text-gray-400 hover:text-gray-600"
           >
             {showPassword ? "🙈" : "👁️"}
           </button>

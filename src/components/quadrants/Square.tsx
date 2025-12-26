@@ -1,11 +1,10 @@
-import React, { FC, useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import DragIcon from "../Icons/DragIcon";
 import SelectIcon from "../Icons/SelectIcon";
 import RemoveIcon from "../Icons/RemoveIcon";
 import { SquareProps } from "@/interfaces/interfaces";
-// import { Draggable, Droppable } from "react-beautiful-dnd";
 import { Draggable, Droppable } from "@hello-pangea/dnd";
-import SelectedIcon from "../Icons/SelectedIcon";
+import useStore from "@/store/store";
 
 const Square: FC<SquareProps> = ({
   color,
@@ -17,10 +16,15 @@ const Square: FC<SquareProps> = ({
   index,
   boardID,
 }) => {
+  const { updateTaskContent } = useStore();
+
   const [isMounted, setIsMounted] = useState(false);
   const [hoveredDeleteId, setHoveredDeleteId] = useState<string | null>(null);
   const [editingId, setEditingId] = useState<string | null>(null);
   const [editedTitle, setEditedTitle] = useState("");
+  const [editingHeight, setEditingHeight] = useState<number | undefined>(
+    undefined
+  );
 
   useEffect(() => {
     setIsMounted(true);
@@ -58,17 +62,33 @@ const Square: FC<SquareProps> = ({
     purple: "bg-qfiveContainerBg/4",
   };
 
-  const startEditing = (id: string, title: string) => {
+  const startEditing = (id: string, title: string, height: number) => {
     setEditingId(id);
     setEditedTitle(title);
+    setEditingHeight(height);
   };
 
-  const submitEdit = (id: string) => {
-    if (!editedTitle.trim()) return;
-
-    // updateTaskTitle(id, editedTitle); // your API / state update
+  const resetEditingState = () => {
     setEditingId(null);
     setEditedTitle("");
+    setEditingHeight(undefined);
+  };
+
+  const submitEdit = (id: string, prevTitle: string) => {
+    const nextTitle = editedTitle.trim();
+    if (!nextTitle) return;
+
+    console.log("first");
+
+    if (prevTitle.trim() === nextTitle) {
+      resetEditingState();
+      return;
+    }
+
+    console.log("second");
+
+    updateTaskContent(id, nextTitle);
+    resetEditingState();
   };
 
   const cancelEdit = () => {
@@ -133,16 +153,19 @@ const Square: FC<SquareProps> = ({
                                 <DragIcon className="mr-1 cursor-grab" />
                                 {editingId === id ? (
                                   <textarea
+                                    style={{
+                                      height: editingHeight,
+                                    }}
                                     autoFocus
                                     value={editedTitle}
                                     onChange={(e) =>
                                       setEditedTitle(e.target.value)
                                     }
-                                    onBlur={() => submitEdit(id)}
+                                    onBlur={() => submitEdit(id, title)}
                                     onKeyDown={(e) => {
                                       if (e.key === "Enter" && !e.shiftKey) {
                                         e.preventDefault();
-                                        submitEdit(id);
+                                        submitEdit(id, title);
                                       }
                                       if (e.key === "Escape") {
                                         cancelEdit();
@@ -152,14 +175,19 @@ const Square: FC<SquareProps> = ({
                                   />
                                 ) : (
                                   <div
-                                    onDoubleClick={() =>
-                                      startEditing(id, title)
-                                    }
-                                    className={`half-black text-backgroundbg/80 relative mr-2.5 flex-1 pl-1.5 ${
+                                    onDoubleClick={(e) => {
+                                      startEditing(
+                                        id,
+                                        title,
+                                        e.currentTarget?.clientHeight
+                                      );
+                                    }}
+                                    className={`half-black text-backgroundbg/80 relative mr-2.5 flex-1 cursor-text pl-1.5 ${
                                       completed
                                         ? "text-success rounded-lg line-through"
                                         : ""
                                     }`}
+                                    title="Double click to edit"
                                   >
                                     {title}
                                   </div>
