@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
-import ToogleSwitch from "../toogleSwtich/ToogleSwitch";
+import { useEffect, useState } from "react";
 import AddIcon from "../Icons/AddIcon";
 import { useForm } from "react-hook-form";
-import { v4 as uuidv4 } from "uuid";
 import useStore from "@/store/store";
+import Button from "../button";
+import EnterIcon from "../Icons/EnterIcon";
 
 const InputForm = () => {
   const {
@@ -159,51 +159,7 @@ const InputForm = () => {
           </div>
         </div>
 
-        <button className="bg-background text-backgroundbg flex cursor-pointer items-center justify-center gap-2.5 rounded-full p-2">
-          {/* <AddIcon /> */}
-          <div className="text-sm font-bold">Submit</div>
-          <svg
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <rect
-              width="24"
-              height="24"
-              rx="6"
-              fill="#0E0E19"
-              fillOpacity="0.08"
-            />
-            <rect
-              x="0.5"
-              y="0.5"
-              width="23"
-              height="23"
-              rx="5.5"
-              stroke="#0E0E19"
-              strokeOpacity="0.08"
-            />
-            <mask
-              id="mask0_120_147"
-              maskUnits="userSpaceOnUse"
-              x="6"
-              y="6"
-              width="12"
-              height="12"
-            >
-              <rect x="6" y="6" width="12" height="12" fill="#D9D9D9" />
-            </mask>
-            <g mask="url(#mask0_120_147)">
-              <path
-                d="M10.5 15L7.5 12L10.5 9L11.2 9.7L9.4 11.5H15.5V9.5H16.5V12.5H9.4L11.2 14.3L10.5 15Z"
-                fill="#0E0E19"
-                fillOpacity="0.64"
-              />
-            </g>
-          </svg>
-        </button>
+        <Button icon={<EnterIcon />} color="white" />
       </form>
 
       <div className="flex items-center gap-2.5">

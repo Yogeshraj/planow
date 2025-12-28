@@ -41,12 +41,12 @@ const AuthLayout = ({ open, onClose, children }: AuthLayoutProps) => {
 
       {/* MODAL */}
       <div
-        className={`relative w-[380px] transform rounded-[20px] bg-white p-8 text-[#1a1a1a] shadow-2xl transition-[opacity,transform] duration-200 ease-out ${open ? "scale-100 opacity-100" : "scale-95 opacity-0"}`}
+        className={`bg-background relative w-[380px] transform rounded-3xl p-5 text-[#1a1a1a] shadow-2xl transition-[opacity,transform] duration-200 ease-out ${open ? "scale-100 opacity-100" : "scale-95 opacity-0"}`}
       >
         {/* Close */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 text-gray-400 hover:text-gray-700"
+          className="absolute top-4 right-4 cursor-pointer text-gray-400 hover:text-gray-700"
         >
           ✕
         </button>
@@ -56,8 +56,8 @@ const AuthLayout = ({ open, onClose, children }: AuthLayoutProps) => {
           <Image
             src="/logo.svg"
             alt="Planow Logo"
-            width={87}
-            height={32}
+            width={105}
+            height={24}
             unoptimized
             className="m-auto block"
             title="Planow Logo"

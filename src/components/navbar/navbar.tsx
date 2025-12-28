@@ -1,12 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import DashboardIcon from "../Icons/DashboardIcon";
-import TaskIcon from "../Icons/TaskIcon";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import Login from "@/components/login/login";
 import AuthLayout from "@/layouts/AuthLayout";
 import LoginForm from "@/components/login/login";
 import SignupForm from "../signup/SignupForm";
@@ -33,14 +30,14 @@ const Navbar = ({ userData }: any) => {
         <div className="mr-auto flex flex-wrap items-center">
           <Link
             href="/"
-            className="border-outlinevariant h-[32px] w-[87px] border-r border-solid px-1"
+            className="border-outlinevariant align-center flex h-[32px] w-[87px] justify-center border-r border-solid px-1"
             title="Home"
           >
             <Image
               src="/logo.svg"
               alt="Planow Logo"
-              width={87}
-              height={32}
+              width={70}
+              height={16}
               unoptimized
               className="m-auto block"
               title="Planow Logo"
