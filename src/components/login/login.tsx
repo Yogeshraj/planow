@@ -1,6 +1,7 @@
 import React, { ChangeEvent, FormEvent, useState } from "react";
-import Image from "next/image";
 import { supabase } from "@/supabase-client";
+import Button from "../button";
+import EnterIcon from "../Icons/EnterIcon";
 
 // xorey23512@besenica.com
 // test123
@@ -30,81 +31,76 @@ const LoginForm = ({ setShowSignup, setShowLogin }: any) => {
 
   return (
     <>
-      <h2 className='text-center text-2xl font-semibold mb-6'>
+      <h2 className="text-backgroundbg mb-6 text-center text-2xl">
         Login to your account
       </h2>
 
       <form onSubmit={handleSubmit}>
         <input
-          type='email'
-          placeholder='Your email'
-          className='w-full bg-gray-100 border border-gray-200 rounded-full px-4 py-3 mb-4 outline-none focus:border-blue-500'
+          type="email"
+          placeholder="Your email"
+          className="bg-backgroundbg/5 border-backgroundbg/10 focus:border-backgroundbg/10 text-backgroundbg mb-4 w-full rounded-md border px-4 py-2.5 text-sm outline-none"
           onChange={(e: ChangeEvent<HTMLInputElement>) =>
             setEmail(e.target.value)
           }
           value={email}
         />
 
-        <div className='relative mb-4'>
+        <div className="relative mb-4">
           <input
             type={showPassword ? "text" : "password"}
-            name='password'
-            placeholder='Create Password'
+            name="password"
+            placeholder="Enter Password"
             value={password}
             onChange={(e: ChangeEvent<HTMLInputElement>) =>
               setpassword(e.target.value)
             }
-            className='w-full bg-gray-100 border border-gray-200 rounded-full px-4 py-3 outline-none focus:border-blue-500 pr-12'
+            className="bg-backgroundbg/5 border-backgroundbg/10 focus:border-backgroundbg/10 text-backgroundbg w-full rounded-md border px-4 py-2.5 pr-12 text-sm outline-none"
           />
 
           <button
-            type='button'
+            type="button"
             onClick={() => setShowPassword(!showPassword)}
-            className='absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600'
+            className="absolute top-1/2 right-4 -translate-y-1/2 cursor-pointer text-gray-400 hover:text-gray-600"
           >
             {showPassword ? "🙈" : "👁️"}
           </button>
         </div>
 
-        <button className='w-full bg-meteorite-blue hover:bg-blue-700 text-white transition py-3 font-semibold mb-4 rounded-xl'>
-          Continue
-        </button>
+        <Button text="Continue" icon={<EnterIcon />} className="mb-4" />
       </form>
 
       {signInError && (
-        <div className='mb-4 text-center text-red-700'>{signInError}</div>
+        <div className="mb-4 text-center text-red-700">{signInError}</div>
       )}
 
-      {/* <div className='text-center text-sm text-gray-400 mb-4'>OR</div>
+      {/* <div className="text-outline after:bg-backgroundbg/8 relative mb-4 flex items-center justify-center text-center text-sm after:absolute after:top-1/2 after:left-0 after:h-px after:w-full after:content-['']">
+        <span className="bg-background z-10 block px-2.5">OR</span>
+      </div>
 
-      <button className='w-full flex items-center justify-center gap-3 border border-gray-200 py-3 rounded-full hover:bg-gray-50 transition mb-3'>
-        <Image
-          width={20}
-          height={20}
-          src='https://www.svgrepo.com/show/355037/google.svg'
-          alt='google'
-        />
-        Continue with Google
-      </button>
+      <Button
+        color="grey"
+        text="Continue with Google"
+        className="mb-4"
+        iconPosition="left"
+        icon={
+          <Image
+            width={20}
+            height={20}
+            src="https://www.svgrepo.com/show/355037/google.svg"
+            alt="google"
+          />
+        }
+      /> */}
 
-      <button className='w-full flex items-center justify-center gap-3 border border-gray-200 py-3 rounded-full hover:bg-gray-50 transition mb-6'>
-        <Image
-          width={20}
-          height={20}
-          src='https://www.svgrepo.com/show/448224/facebook.svg'
-          alt='facebook'
-        />
-        Continue with Facebook
-      </button> */}
-
-      <div className='text-center text-sm'>
+      <div className="border-backgroundbg/8 text-backgroundbg/80 border-t pt-4 text-center text-sm">
         <span>Don’t have an account?</span>
         <button
           onClick={() => {
             setShowLogin(false);
             setShowSignup(true);
           }}
-          className='ml-1 text-blue-600 hover:underline'
+          className="ml-1 cursor-pointer underline"
         >
           Sign up
         </button>

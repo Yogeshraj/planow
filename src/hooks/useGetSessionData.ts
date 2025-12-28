@@ -1,45 +1,42 @@
 import { supabase } from "@/supabase-client";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import useStore from "@/store/store";
 
 const useGetSessionData = () => {
   const { setUser, syncLocalToSupabase, fetchData }: any = useStore();
-
   const [session, setSession] = useState<any>(null);
 
-  const fetchSession = async () => {
-    const currentSession = await supabase.auth.getSession();
-    setSession(currentSession.data.session);
-    setUser(currentSession.data.session?.user);
-  };
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data }) => {
+      setSession(data.session);
+      setUser(data.session?.user ?? null);
+    });
+
+    const { data: sub } = supabase.auth.onAuthStateChange((_, session) => {
+      setSession(session);
+      setUser(session?.user ?? null);
+    });
+
+    return () => sub.subscription.unsubscribe();
+  }, []);
 
   useEffect(() => {
-    fetchSession();
+    if (!session?.user) return;
 
-    const { data: authListener } = supabase.auth.onAuthStateChange(
-      async (event, session) => {
-        // Always set session in state
-        setSession(session);
-        setUser(session?.user ?? null);
+    let cancelled = false;
 
-        // ONLY sync when user logs in
-        if (event === "SIGNED_IN" && session?.user) {
-          console.log("User signed in → syncing local tasks...");
-          await syncLocalToSupabase();
-          await fetchData();
-        }
+    const run = async () => {
+      await syncLocalToSupabase();
+      if (cancelled) return;
+      await fetchData();
+    };
 
-        // Clear Zustand if user logs out
-        if (event === "SIGNED_OUT") {
-          console.log("User signed out");
-        }
-      }
-    );
+    run();
 
     return () => {
-      authListener.subscription.unsubscribe();
+      cancelled = true;
     };
-  }, []);
+  }, [session?.user?.id]);
 
   return session;
 };
