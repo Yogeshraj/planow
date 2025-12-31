@@ -185,6 +185,10 @@ const useStore = create(
         const previousData = get().mainData;
         const userData = get().userData;
 
+        const currentTask = previousData.find((t: any) => t.id === id);
+
+        const newCompleted = !currentTask.completed;
+
         try {
           // Optimistic UI Update (Single map - best practice)
           set((state: any) => ({
@@ -193,7 +197,7 @@ const useStore = create(
               task.id === id
                 ? {
                     ...task,
-                    completed: !task.completed,
+                    completed: newCompleted,
                     ...(!userData && {
                       source: "local",
                       updated_at: new Date().toISOString(),
@@ -212,7 +216,7 @@ const useStore = create(
             // Supabase Update
             const { error } = await supabase
               .from("tasks")
-              .update({ completed: true })
+              .update({ completed: newCompleted })
               .eq("id", id);
 
             // Rollback if DB fails
@@ -296,7 +300,15 @@ const useStore = create(
           // Optimistic UI Update (Single map - best practice)
           set((state: any) => ({
             ...state,
-            mainData: state.mainData.filter((task: any) => task.id !== taskId),
+            mainData: state.mainData.map((task: any) =>
+              task.id === taskId
+                ? {
+                    ...task,
+                    deleted_at: new Date().toISOString(),
+                    source: "local",
+                  }
+                : task
+            ),
             snackbar: {
               show: true,
               content: "Task deleted!",
@@ -425,6 +437,7 @@ const useStore = create(
             position: task.position,
             title: task.title,
             updated_at: task.updated_at, // ISO string
+            deleted_at: task.deleted_at ?? null,
           }));
 
           // Server-side timestamp-aware sync

@@ -21,6 +21,14 @@ const Quadrants = () => {
     // If user tries to drop in an unknown destination
     if (!result.destination) return;
 
+    // If user tries to drop in the same position
+    if (
+      source.droppableId === destination.droppableId &&
+      source.index === destination.index
+    ) {
+      return;
+    }
+
     const sourceBoardId = Number(source.droppableId);
     const destBoardId = Number(destination.droppableId);
 
@@ -96,7 +104,7 @@ const Quadrants = () => {
             boardID={String(board.board_id)}
             subtitle={board.boardSubtitle}
             tasks={mainData?.filter((data: any) => {
-              return data.board_id === board.board_id;
+              return data.board_id === board.board_id && !data.deleted_at;
             })}
             deleteTask={handleDeleteTask}
             completeTask={completeTask}
