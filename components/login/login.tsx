@@ -2,9 +2,7 @@ import React, { ChangeEvent, FormEvent, useState } from "react";
 import { supabase } from "../../lib/supabase-client";
 import Button from "../button";
 import EnterIcon from "../Icons/EnterIcon";
-
-// xorey23512@besenica.com
-// test123
+import GoogleAuth from "../auth/GoogleAuth";
 
 const LoginForm = ({ setShowSignup, setShowLogin }: any) => {
   const [email, setEmail] = useState("");
@@ -74,24 +72,11 @@ const LoginForm = ({ setShowSignup, setShowLogin }: any) => {
         <div className="mb-4 text-center text-red-700">{signInError}</div>
       )}
 
-      {/* <div className="text-outline after:bg-backgroundbg/8 relative mb-4 flex items-center justify-center text-center text-sm after:absolute after:top-1/2 after:left-0 after:h-px after:w-full after:content-['']">
+      <div className="text-outline after:bg-backgroundbg/8 relative mb-4 flex items-center justify-center text-center text-sm after:absolute after:top-1/2 after:left-0 after:h-px after:w-full after:content-['']">
         <span className="bg-background z-10 block px-2.5">OR</span>
       </div>
 
-      <Button
-        color="grey"
-        text="Continue with Google"
-        className="mb-4"
-        iconPosition="left"
-        icon={
-          <Image
-            width={20}
-            height={20}
-            src="https://www.svgrepo.com/show/355037/google.svg"
-            alt="google"
-          />
-        }
-      /> */}
+      <GoogleAuth setShowLogin={setShowLogin} />
 
       <div className="border-backgroundbg/8 text-backgroundbg/80 border-t pt-4 text-center text-sm">
         <span>Don’t have an account?</span>

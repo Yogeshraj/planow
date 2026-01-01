@@ -53,13 +53,27 @@ const AuthLayout = ({ open, onClose, children }: AuthLayoutProps) => {
 
         {/* Logo */}
         <div className="mb-6 text-center">
+          {/* Light Logo */}
           <Image
             src="/logo.svg"
             alt="Planow Logo"
             width={105}
             height={24}
+            priority
+            className="logo-light m-auto"
             unoptimized
-            className="m-auto block"
+            title="Planow Logo"
+          />
+
+          {/* Dark Logo */}
+          <Image
+            src="/logo-dark.svg"
+            alt="Planow Logo"
+            width={105}
+            height={24}
+            priority
+            className="logo-dark m-auto"
+            unoptimized
             title="Planow Logo"
           />
         </div>
