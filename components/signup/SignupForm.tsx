@@ -3,6 +3,7 @@ import Image from "next/image";
 import { supabase } from "../../lib/supabase-client";
 import Button from "../button";
 import EnterIcon from "../Icons/EnterIcon";
+import GoogleAuth from "../auth/GoogleAuth";
 
 const SignupForm = ({ setShowLogin, setShowSignup }: any) => {
   const [form, setForm] = useState({
@@ -103,24 +104,11 @@ const SignupForm = ({ setShowLogin, setShowSignup }: any) => {
         <Button text="Register" icon={<EnterIcon />} className="mb-4" />
       </form>
 
-      {/* <div className="text-outline after:bg-backgroundbg/8 relative mb-4 flex items-center justify-center text-center text-sm after:absolute after:top-1/2 after:left-0 after:h-px after:w-full after:content-['']">
+      <div className="text-outline after:bg-backgroundbg/8 relative mb-4 flex items-center justify-center text-center text-sm after:absolute after:top-1/2 after:left-0 after:h-px after:w-full after:content-['']">
         <span className="bg-background z-10 block px-2.5">OR</span>
       </div>
 
-      <Button
-        color="grey"
-        text="Continue with Google"
-        className="mb-4"
-        iconPosition="left"
-        icon={
-          <Image
-            width={20}
-            height={20}
-            src="https://www.svgrepo.com/show/355037/google.svg"
-            alt="google"
-          />
-        }
-      /> */}
+      <GoogleAuth setShowLogin={setShowLogin} />
 
       <div className="border-backgroundbg/8 text-backgroundbg/80 border-t pt-4 text-center text-sm">
         <span>Already have an account?</span>

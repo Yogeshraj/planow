@@ -100,6 +100,19 @@ body {
     border-color 0.25s ease;
 }
 
+/* default */
+.logo-dark {
+  display: none;
+}
+
+html[data-theme="dark"] .logo-light {
+  display: none;
+}
+
+html[data-theme="dark"] .logo-dark {
+  display: block;
+}
+
 /* width */
 ::-webkit-scrollbar {
   width: 3px;

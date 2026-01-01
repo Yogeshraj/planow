@@ -33,13 +33,27 @@ const Navbar = ({ userData }: any) => {
             className="border-outlinevariant align-center flex h-[32px] w-[87px] justify-center border-r border-solid px-1"
             title="Home"
           >
+            {/* Light Logo */}
             <Image
               src="/logo.svg"
               alt="Planow Logo"
               width={70}
               height={16}
+              priority
+              className="logo-light"
               unoptimized
-              className="m-auto block"
+              title="Planow Logo"
+            />
+
+            {/* Dark Logo */}
+            <Image
+              src="/logo-dark.svg"
+              alt="Planow Logo"
+              width={70}
+              height={16}
+              priority
+              className="logo-dark"
+              unoptimized
               title="Planow Logo"
             />
           </Link>
