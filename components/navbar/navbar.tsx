@@ -87,20 +87,19 @@ const Navbar = ({ userData }: any) => {
           </Link> */}
         </div>
 
-        {/* <div className="border-outlinevariant border-l border-solid px-2 py-[4px]">
-          <ThemeSwitch />
-        </div> */}
-
         <div className="border-outlinevariant border-l border-solid px-2 py-[4px]">
           <ThemeButtons />
         </div>
 
         {userData ? (
           <div className="border-outlinevariant flex gap-2 border-l border-solid px-2 py-[4px]">
-            <div className="text-sm">
+            <div className="text-backgroundbg/40 text-sm">
               Hello, {userData?.user?.user_metadata?.name}
             </div>
-            <div className="cursor-pointer text-sm" onClick={handleLogout}>
+            <div
+              className="text-backgroundbg/40 cursor-pointer text-sm"
+              onClick={handleLogout}
+            >
               Logout
             </div>
           </div>

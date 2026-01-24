@@ -10,12 +10,7 @@ type FormValues = {
 };
 
 const InputForm = () => {
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { isSubmitSuccessful },
-  } = useForm<FormValues>();
+  const { register, handleSubmit, reset } = useForm<FormValues>();
 
   const { mainData, addTask }: any = useStore();
 
@@ -24,17 +19,7 @@ const InputForm = () => {
     urgent: 2,
   });
 
-  useEffect(() => {
-    if (isSubmitSuccessful) {
-      reset();
-      setRadioState({
-        important: 2,
-        urgent: 2,
-      });
-    }
-  }, [isSubmitSuccessful]);
-
-  const onSubmit = (data: FormValues) => {
+  const onSubmit = async (data: FormValues) => {
     let boardName = "later";
     let boardID = 5;
     const { inputText } = data;
@@ -81,11 +66,17 @@ const InputForm = () => {
         ? tasksInBoard[tasksInBoard.length - 1].position
         : -1; // no items yet → new task gets order_index = 0
 
-    addTask({
+    await addTask({
       title: inputText,
       completed: false,
       board_id: boardID,
       position: lastIndex + 1,
+    });
+
+    reset();
+    setRadioState({
+      important: 2,
+      urgent: 2,
     });
   };
 

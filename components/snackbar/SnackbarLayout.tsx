@@ -19,7 +19,7 @@ const SnackbarLayout: FC<SnackbarProps> = ({
         resetSnackbar();
       }, 2000);
     }
-  }, [snackbarProperties]);
+  }, [resetSnackbar, snackbarProperties]);
 
   return (
     <div

@@ -73,6 +73,7 @@ export default function RootLayout({
                     root.removeAttribute("data-theme");
                     const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
                     root.style.colorScheme = prefersDark ? "dark" : "light";
+                    root.setAttribute("data-theme", prefersDark ? "dark" : "light");
                   } else {
                     root.setAttribute("data-theme", theme);
                     root.style.colorScheme = theme;
