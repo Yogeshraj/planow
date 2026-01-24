@@ -3,7 +3,7 @@
 //   theme: {
 //     extend: {
 //       colors: {
-//         green:{ 
+//         green:{
 //           100: "var(--states-do-on-main-opacity-32)"
 //         },
 //       },
@@ -14,14 +14,13 @@
 //     },
 //   },
 //   plugins: [],
-  // safelist: [
-  //   {
-  //     pattern:
-  //       /(bg|text|border)-(red|green|blue|yellow|half-purple)-(100|400|700)/,
-  //   },
-  // ],
+// safelist: [
+//   {
+//     pattern:
+//       /(bg|text|border)-(red|green|blue|yellow|half-purple)-(100|400|700)/,
+//   },
+// ],
 // };
-
 
 // module.exports = {
 //   darkMode: ["class", '[data-theme="dark"]'],

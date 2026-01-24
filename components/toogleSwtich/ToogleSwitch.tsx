@@ -19,22 +19,22 @@ const ToogleSwitch: FC<InputProps> = ({
   };
 
   return (
-    <div className='relative flex items-center overflow-hidden justify-center gap-5'>
+    <div className="relative flex items-center justify-center gap-5 overflow-hidden">
       {/* <span className='text-[#C9C3DC] font-semibold text-sm switch-yes'>
         Yes
       </span> */}
-      <div className='switch'>
+      <div className="switch">
         <input
           id={`${id}_one`}
-          type='radio'
-          value='yes'
+          type="radio"
+          value="yes"
           defaultChecked={radioState[id] === 1}
           {...register(id)}
           onClick={() => handleRadioChange(1)}
         />
         <label
           htmlFor={`${id}_one`}
-          className='switch__label switch__left absolute !w-[120%] left-[-43px] text-[#C9C3DC] font-semibold text-sm '
+          className="switch__label switch__left absolute left-[-43px] !w-[120%] text-sm font-semibold text-[#C9C3DC]"
           onClick={() => handleRadioChange(1)}
         >
           Yes
@@ -42,35 +42,35 @@ const ToogleSwitch: FC<InputProps> = ({
 
         <input
           id={`${id}_two`}
-          type='radio'
-          value='neutral'
+          type="radio"
+          value="neutral"
           defaultChecked={radioState[id] === 2}
           {...register(id)}
           onClick={() => handleRadioChange(2)}
         />
         <label
           htmlFor={`${id}_two`}
-          className='switch__label switch__center m-auto'
+          className="switch__label switch__center m-auto"
           onClick={() => handleRadioChange(2)}
         ></label>
 
         <input
           id={`${id}_three`}
-          type='radio'
-          value='no'
+          type="radio"
+          value="no"
           defaultChecked={radioState[id] === 3}
           {...register(id)}
           onClick={() => handleRadioChange(3)}
         />
         <label
           htmlFor={`${id}_three`}
-          className='switch__label switch__right absolute !w-[120%] right-[-43px] text-[#C9C3DC] font-semibold text-sm '
+          className="switch__label switch__right absolute right-[-43px] !w-[120%] text-sm font-semibold text-[#C9C3DC]"
           onClick={() => handleRadioChange(3)}
         >
           No
         </label>
 
-        <div className='switch__indicator'></div>
+        <div className="switch__indicator"></div>
       </div>
       {/* <span className='text-[#C9C3DC] font-semibold text-sm switch-no'>No</span> */}
     </div>

@@ -12,8 +12,10 @@ export default function GoogleAnalytics() {
 
   useEffect(() => {
     if (pathname && GA_ID) {
-      const url = pathname + (searchParams?.toString() ? `?${searchParams.toString()}` : "");
-      
+      const url =
+        pathname +
+        (searchParams?.toString() ? `?${searchParams.toString()}` : "");
+
       window.gtag("config", GA_ID, {
         page_path: url,
       });

@@ -1,10 +1,11 @@
-import { FC, useEffect, useState } from "react";
+import { FC, useState } from "react";
 import DragIcon from "../Icons/DragIcon";
 import SelectIcon from "../Icons/SelectIcon";
 import RemoveIcon from "../Icons/RemoveIcon";
 import { SquareProps } from "../../interfaces/interfaces";
 import { Draggable, Droppable } from "@hello-pangea/dnd";
 import useStore from "../../store/store";
+import { useIsMounted } from "../../hooks/useIsMounted";
 
 const Square: FC<SquareProps> = ({
   color,
@@ -18,17 +19,13 @@ const Square: FC<SquareProps> = ({
 }) => {
   const { updateTaskContent } = useStore();
 
-  const [isMounted, setIsMounted] = useState(false);
+  const isMounted = useIsMounted();
   const [hoveredDeleteId, setHoveredDeleteId] = useState<string | null>(null);
   const [editingId, setEditingId] = useState<string | null>(null);
   const [editedTitle, setEditedTitle] = useState("");
   const [editingHeight, setEditingHeight] = useState<number | undefined>(
     undefined
   );
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
 
   const bgColorVariants: Record<string, string> = {
     green: "bg-qonebg/32",

@@ -18,7 +18,7 @@ const useGetSessionData = () => {
     });
 
     return () => sub.subscription.unsubscribe();
-  }, []);
+  }, [setUser]);
 
   useEffect(() => {
     if (!session?.user) return;
@@ -28,7 +28,7 @@ const useGetSessionData = () => {
     const run = async () => {
       const result = await syncLocalToSupabase();
       if (cancelled || !result) return;
-      await fetchData();
+      // await fetchData();
     };
 
     run();
@@ -36,7 +36,13 @@ const useGetSessionData = () => {
     return () => {
       cancelled = true;
     };
-  }, [session?.user?.id]);
+  }, [
+    fetchData,
+    session?.user,
+    session?.user.id,
+    setUser,
+    syncLocalToSupabase,
+  ]);
 
   return session;
 };

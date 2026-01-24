@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useIsMounted } from "@/hooks/useIsMounted";
 
 type Theme = "light" | "dark" | "system";
 
@@ -204,15 +205,13 @@ const ActiveDarkModeIcon = (
 );
 
 const ThemeButtons = () => {
-  //   const [mounted, setMounted] = useState(false);
-  const [theme, setTheme] = useState("");
-
-  // Initial sync from localStorage
-  useEffect(() => {
-    // setMounted(true);
-    const storedTheme = (localStorage.getItem("theme") as Theme) || "system";
-    setTheme(storedTheme);
-  }, []);
+  const isMounted = useIsMounted();
+  const [theme, setTheme] = useState<Theme>(() => {
+    if (typeof window !== "undefined") {
+      return (localStorage.getItem("theme") as Theme) || "system";
+    }
+    return "system";
+  });
 
   // Apply theme to DOM + persist
   const applyTheme = (value: Theme) => {
@@ -224,6 +223,7 @@ const ThemeButtons = () => {
         "(prefers-color-scheme: dark)"
       ).matches;
       root.style.colorScheme = prefersDark ? "dark" : "light";
+      root.setAttribute("data-theme", prefersDark ? "dark" : "light");
     } else {
       root.setAttribute("data-theme", value);
       root.style.colorScheme = value;
@@ -250,7 +250,7 @@ const ThemeButtons = () => {
     return () => media.removeEventListener("change", handleChange);
   }, [theme]);
 
-  //   if (!mounted) return null;
+  if (!isMounted) return null;
 
   return (
     <div className="bg-backgroundbg/8 flex gap-0.5 rounded-full p-0.5">
