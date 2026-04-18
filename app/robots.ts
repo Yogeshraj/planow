@@ -9,7 +9,13 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ["/api/", "/_next/", "/static/", "/dashboard", "/all-tasks"],
       },
       {
-        userAgent: ["GPTBot", "ChatGPT-User", "PerplexityBot", "ClaudeBot", "claudebot"],
+        userAgent: [
+          "GPTBot",
+          "ChatGPT-User",
+          "PerplexityBot",
+          "ClaudeBot",
+          "claudebot",
+        ],
         allow: "/",
         disallow: ["/dashboard", "/all-tasks"],
       },
