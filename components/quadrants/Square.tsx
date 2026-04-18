@@ -75,14 +75,10 @@ const Square: FC<SquareProps> = ({
     const nextTitle = editedTitle.trim();
     if (!nextTitle) return;
 
-    console.log("first");
-
     if (prevTitle.trim() === nextTitle) {
       resetEditingState();
       return;
     }
-
-    console.log("second");
 
     updateTaskContent(id, nextTitle);
     resetEditingState();

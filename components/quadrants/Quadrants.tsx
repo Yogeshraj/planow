@@ -94,7 +94,7 @@ const Quadrants = () => {
 
   return (
     <DragDropContext onDragEnd={handleOnDragEnd}>
-      <div className="border-outlinevariant divide-outlinevariant grid grid-cols-1 divide-x divide-y border sm:grid-cols-2 lg:grid-cols-3">
+      <div className="border-outlinevariant divide-outlinevariant grid grid-cols-1 divide-x divide-y border border-t-0 sm:grid-cols-2 lg:grid-cols-3">
         {boards?.map((board: any, index: number) => (
           <Square
             key={board.board_id}

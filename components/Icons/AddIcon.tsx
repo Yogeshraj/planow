@@ -19,12 +19,12 @@ const AddIcon = ({ className, onClick }: IconProps) => {
         width="24"
         height="24"
       >
-        <rect width="24" height="24" fill="#FFFFFF" />
+        <rect width="24" height="24" fill="currentColor" />
       </mask>
-      <g mask="url(#mask0_164_664)">
+      <g>
         <path
           d="M10.675 19.35V13.3H4.625V10.65H10.675V4.60001H13.325V10.65H19.375V13.3H13.325V19.35H10.675Z"
-          fill="#FFFFFF"
+          fill="currentColor"
         />
       </g>
     </svg>

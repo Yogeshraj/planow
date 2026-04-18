@@ -241,3 +241,77 @@ html[data-theme="dark"] .logo-dark {
     grid-column-start: 3;
   }
 }
+
+/* ─── Hero Illustration Animations ─────────────────────────── */
+
+/* Task card staggered float-in */
+@keyframes heroCardIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-card {
+  animation: heroCardIn 0.4s ease-out forwards;
+}
+
+/* Ghost drag card pulse */
+@keyframes ghostPulse {
+  0%,
+  100% {
+    opacity: 0.45;
+    transform: rotate(-2deg) translateY(0px);
+  }
+  50% {
+    opacity: 0.7;
+    transform: rotate(-2deg) translateY(-3px);
+  }
+}
+
+/* Green glow bloom breathe */
+@keyframes glowBreathe {
+  0%,
+  100% {
+    transform: translateX(-50%) scale(0.95);
+    opacity: 0.8;
+  }
+  50% {
+    transform: translateX(-50%) scale(1.08);
+    opacity: 1;
+  }
+}
+
+/* Subtle panel float on load */
+@keyframes panelRise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.matrix-panel {
+  animation: panelRise 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* Scroll parallax helper */
+.hero-illustration-root {
+  will-change: transform;
+}
+
+.scroll-img {
+  transform: scale(1);
+  transition: transform 0.5s ease;
+}
+
+.scroll-img.active {
+  transform: scale(1.1);
+}
