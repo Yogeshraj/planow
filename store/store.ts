@@ -71,6 +71,14 @@ const useStore = create(
             mainData: [...state.mainData, tempTask],
           }));
 
+          set({
+            snackbar: {
+              show: true,
+              content: "Task added successfully!",
+              type: "success",
+            },
+          });
+
           // Database insert
           if (userData) {
             const { data, error } = await supabase
@@ -98,11 +106,6 @@ const useStore = create(
               mainData: state.mainData.map((t: any) =>
                 t.id === tempTask.id ? data : t
               ),
-              snackbar: {
-                show: true,
-                content: "Task added successfully!",
-                type: "success",
-              },
             }));
           }
         } catch (err: any) {
@@ -145,9 +148,7 @@ const useStore = create(
             },
           }));
 
-          console.log("userData", userData);
           if (userData) {
-            console.log("inside");
             // Supabase Update
             const { error } = await supabase
               .from("tasks")
@@ -156,7 +157,6 @@ const useStore = create(
 
             // Rollback if DB fails
             if (error) {
-              console.log("error", error);
               set({
                 mainData: previousData,
                 snackbar: {
@@ -271,6 +271,14 @@ const useStore = create(
               : task;
           }),
         }));
+
+        set({
+          snackbar: {
+            show: true,
+            content: "Task moved successfully!",
+            type: "success",
+          },
+        });
 
         if (!userData) return;
 

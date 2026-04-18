@@ -13,27 +13,57 @@ const notoSans = Noto_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Planow – Eisenhower Matrix To-Do App for Smart Task Prioritization",
+  title: {
+    default: "Planow – Eisenhower Matrix Task Management App",
+    template: "%s – Planow",
+  },
   description:
-    "Planow is a productivity app that uses the Eisenhower Matrix to prioritize tasks. Act on what matters now, delegate, schedule, and reduce distractions.",
-  keywords:
-    "todo app, task management, productivity app, Eisenhower matrix, priority matrix, urgent important matrix, daily planner, schedule tasks, organize tasks, to-do list web app, productivity tools",
+    "Master your productivity with Planow. Prioritize tasks using the proven Eisenhower Matrix methodology (Urgent vs. Important). A free, no-account-required daily planner and task manager.",
+  keywords: [
+    "eisenhower matrix",
+    "task management",
+    "todo app",
+    "productivity app",
+    "priority matrix",
+    "urgent important matrix",
+    "daily planner",
+    "organize tasks",
+    "to-do list",
+    "productivity tools",
+    "free task manager",
+    "time management",
+    "decision matrix",
+    "matrix planner",
+  ],
   authors: [{ name: "Yogesh Raj Kabilan" }],
   publisher: "Planow",
+  applicationName: "Planow",
+  category: "Productivity",
+  classification: "Task Management",
   metadataBase: new URL("https://planow.app"),
   openGraph: {
     type: "website",
+    siteName: "Planow",
     url: "https://planow.app/",
-    title: "Planow - Prioritize Your Productivity",
+    title: "Planow – Eisenhower Matrix Task Management App",
     description:
-      "Planow is a productivity app that uses the Eisenhower Matrix to prioritize tasks. Act on what matters now, delegate, schedule, and reduce distractions.",
-    images: [{ url: "/og-image.png" }],
+      "Planow helps you prioritize tasks using the Eisenhower Matrix. Focus on what's urgent and important — free, no account needed.",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Planow – Eisenhower Matrix Task Management App",
+      },
+    ],
+    locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Planow - Prioritize Your Productivity",
+    site: "@planowapp",
+    title: "Planow – Eisenhower Matrix Task Management App",
     description:
-      "Planow is a productivity app that uses the Eisenhower Matrix to prioritize tasks. Act on what matters now, delegate, schedule, and reduce distractions.",
+      "Planow helps you prioritize tasks using the Eisenhower Matrix. Focus on what's urgent and important — free, no account needed.",
     images: ["/og-image.png"],
   },
   alternates: {
@@ -42,6 +72,7 @@ export const metadata: Metadata = {
   icons: {
     shortcut: "/monogram.png",
     icon: "/monogram.png",
+    apple: "/monogram.png",
   },
   robots: {
     index: true,
@@ -49,7 +80,15 @@ export const metadata: Metadata = {
     googleBot: {
       index: true,
       follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
     },
+  },
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: "Planow",
   },
 };
 
@@ -83,6 +122,76 @@ export default function RootLayout({
               `,
           }}
         />
+        {/* ORGANIZATION SCHEMA */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              name: "Planow",
+              url: "https://planow.app",
+              logo: "https://planow.app/logo.svg",
+              description:
+                "Planow is a free productivity app built on the Eisenhower Matrix to help you prioritize tasks by urgency and importance.",
+              contactPoint: {
+                "@type": "ContactPoint",
+                email: "planow25@gmail.com",
+                contactType: "customer support",
+              },
+            }),
+          }}
+        />
+
+        {/* WEBSITE SCHEMA */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              name: "Planow",
+              url: "https://planow.app",
+              description:
+                "Free Eisenhower Matrix task management app to help you prioritize what truly matters.",
+              potentialAction: {
+                "@type": "SearchAction",
+                target: {
+                  "@type": "EntryPoint",
+                  urlTemplate:
+                    "https://planow.app/dashboard?q={search_term_string}",
+                },
+                "query-input": "required name=search_term_string",
+              },
+            }),
+          }}
+        />
+
+        {/* SOFTWARE APPLICATION SCHEMA */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "SoftwareApplication",
+              name: "Planow",
+              applicationCategory: "ProductivityApplication",
+              operatingSystem: "Web, iOS, Android",
+              url: "https://planow.app",
+              offers: {
+                "@type": "Offer",
+                price: "0",
+                priceCurrency: "USD",
+              },
+              description:
+                "Planow is a free, web-based Eisenhower Matrix task management app. Prioritize tasks by urgency and importance with drag-and-drop simplicity.",
+              screenshot: "https://planow.app/og-image.png",
+              featureList:
+                "Eisenhower Matrix, Drag and Drop Tasks, Dark Mode, Team Collaboration (coming soon), Analytics (coming soon)",
+            }),
+          }}
+        />
+
         {/* FAQ SCHEMA */}
         <script
           type="application/ld+json"

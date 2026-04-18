@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import AddIcon from "../Icons/AddIcon";
 import { useForm } from "react-hook-form";
 import useStore from "../../store/store";
 import Button from "../button";
 import EnterIcon from "../Icons/EnterIcon";
+import { trackEvent } from "@/utils/trackEvent";
 
 type FormValues = {
   inputText: string;
@@ -19,7 +20,14 @@ const InputForm = () => {
     urgent: 2,
   });
 
-  const onSubmit = async (data: FormValues) => {
+  const onSubmit = async (data: FormValues, source = "button") => {
+    // tracking starts
+    trackEvent("submit_form_data", {
+      method: source,
+      input_length: data.inputText?.length || 0,
+    });
+    // tracking ends
+
     let boardName = "later";
     let boardID = 5;
     const { inputText } = data;
@@ -80,7 +88,7 @@ const InputForm = () => {
     });
   };
 
-  const [showForm, setShowForm] = useState(false);
+  const [showForm, setShowForm] = useState(true);
 
   return (
     <div className="absolute right-7 bottom-7 flex flex-col items-end gap-2.5">
@@ -90,14 +98,24 @@ const InputForm = () => {
             ? "translate-y-0 scale-100 opacity-100"
             : "pointer-events-none translate-y-2 scale-95 opacity-0"
         }`}
-        onSubmit={handleSubmit(onSubmit)}
+        onSubmit={handleSubmit((data) => onSubmit(data, "button"))}
       >
-        <div>
+        <div className="relative w-full">
           <textarea
-            className="bg-background/10 border-background/8 placeholder:text-background/64 text-background/64 min-h-[15vh] w-full rounded-lg border p-[15px] text-sm focus:outline-none"
+            className="bg-background/10 border-background/8 placeholder:text-background/64 text-background/64 min-h-[15vh] w-full rounded-lg border p-[15px] pr-28 text-sm focus:outline-none"
             placeholder="Type in here..."
             {...register("inputText", { required: true })}
-          ></textarea>
+            onKeyDown={(e) => {
+              if (e.key === "Enter" && !e.shiftKey) {
+                e.preventDefault();
+                handleSubmit((data) => onSubmit(data, "keyboard"))();
+              }
+            }}
+          />
+
+          <span className="text-background/50 pointer-events-none absolute right-4 bottom-3 text-xs">
+            Enter ↵ to submit
+          </span>
         </div>
 
         <div className="flex flex-col justify-between gap-4 xl:flex-row">
@@ -192,11 +210,16 @@ const InputForm = () => {
         </div> */}
 
         <div
-          className="bg-backgroundbg/80 flex cursor-pointer items-center gap-2.5 rounded-full p-2"
-          onClick={() => setShowForm(!showForm)}
+          className="bg-backgroundbg/80 border-backgroundbg flex cursor-pointer items-center gap-2.5 rounded-full border p-2"
+          onClick={() => {
+            trackEvent("toggle_add_form", {
+              state: showForm ? "close" : "open",
+            });
+            setShowForm(!showForm);
+          }}
         >
           <AddIcon
-            className={`${showForm ? "rotate-45" : "rotate-0"} transition-all duration-100 ease-in-out`}
+            className={`${showForm ? "rotate-45" : "rotate-0"} text-background dark:text-background transition-all duration-100 ease-in-out`}
           />
         </div>
       </div>

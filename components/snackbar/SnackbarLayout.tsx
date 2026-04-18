@@ -17,7 +17,7 @@ const SnackbarLayout: FC<SnackbarProps> = ({
     if (snackbarProperties.show) {
       setTimeout(() => {
         resetSnackbar();
-      }, 2000);
+      }, 3000);
     }
   }, [resetSnackbar, snackbarProperties]);
 

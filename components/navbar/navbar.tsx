@@ -16,7 +16,6 @@ const Navbar = ({ userData }: any) => {
   const [showSignup, setShowSignup] = useState(false);
 
   const handleLogout = async () => {
-    console.log("logout");
     const { error } = await supabase.auth.signOut();
     if (error) {
       console.log("signOut Error", error);
@@ -25,22 +24,23 @@ const Navbar = ({ userData }: any) => {
   };
 
   return (
-    <div className="bg-half-white shadow-default">
+    <div className="bg-half-white shadow-default border-b-outlinevariant border-b">
       <div className="flex flex-row items-center justify-between">
         <div className="mr-auto flex flex-wrap items-center">
           <Link
-            href="/"
-            className="border-outlinevariant align-center flex h-[32px] w-[87px] justify-center border-r border-solid px-1"
+            href={userData ? "/dashboard" : "/"}
+            className="border-outlinevariant flex h-[32px] w-[87px] items-center justify-center border-r border-solid px-1"
             title="Home"
           >
             {/* Light Logo */}
             <Image
               src="/logo.svg"
               alt="Planow Logo"
-              width={70}
-              height={16}
+              width={0}
+              height={0}
               priority
-              className="logo-light"
+              sizes="100vw"
+              className="logo-light h-[16px] w-auto"
               unoptimized
               title="Planow Logo"
             />
@@ -49,84 +49,83 @@ const Navbar = ({ userData }: any) => {
             <Image
               src="/logo-dark.svg"
               alt="Planow Logo"
-              width={70}
-              height={16}
+              width={0}
+              height={0}
               priority
-              className="logo-dark"
+              sizes="100vw"
+              className="logo-dark h-[16px] w-auto"
               unoptimized
               title="Planow Logo"
             />
           </Link>
 
-          <Link
-            href="/"
-            className={`${
-              pathname === "/" ? "active" : ""
-            } [&.active]:bg-surfacecontainer hover:bg-surfacecontainer hover:text-backgroundbg text-backgroundbg/40 [&.active]:text-backgroundbg group border-outlinevariant flex cursor-pointer flex-wrap border-r border-solid bg-white/5 px-3 py-[6px] text-sm transition-all [&.active]:font-bold`}
-            title="Dashboard"
-          >
-            Dashboard
-          </Link>
-          {/* <Link
-            href="/"
-            className={`${
-              pathname === "/all-tasks" ? "active" : ""
-            } [&.active]:bg-surfacecontainer hover:bg-surfacecontainer hover:text-backgroundbg text-backgroundbg/40 [&.active]:text-backgroundbg group border-outlinevariant flex cursor-pointer flex-wrap border-r border-solid bg-white/5 px-3 py-[6px] text-sm transition-all [&.active]:font-bold`}
-            title="All Tasks"
-          >
-            All Tasks
-          </Link>
-          <Link
-            href="/"
-            className={`${
-              pathname === "/reports" ? "active" : ""
-            } [&.active]:bg-surfacecontainer hover:bg-surfacecontainer hover:text-backgroundbg text-backgroundbg/40 [&.active]:text-backgroundbg group border-outlinevariant flex cursor-pointer flex-wrap border-r border-solid bg-white/5 px-3 py-[6px] text-sm transition-all [&.active]:font-bold`}
-            title="Reports"
-          >
-            Reports
-          </Link> */}
-        </div>
-
-        <div className="border-outlinevariant border-l border-solid px-2 py-[4px]">
-          <ThemeButtons />
-        </div>
-
-        {userData ? (
-          <div className="border-outlinevariant flex gap-2 border-l border-solid px-2 py-[4px]">
-            <div className="text-backgroundbg/40 text-sm">
-              Hello, {userData?.user?.user_metadata?.name}
-            </div>
-            <div
-              className="text-backgroundbg/40 cursor-pointer text-sm"
-              onClick={handleLogout}
+          {pathname === "/dashboard" && (
+            <Link
+              href="/dashboard"
+              className={`${
+                pathname === "/dashboard" ? "active" : ""
+              } [&.active]:bg-surfacecontainer hover:bg-surfacecontainer hover:text-backgroundbg text-backgroundbg/40 [&.active]:text-backgroundbg group border-outlinevariant flex cursor-pointer flex-wrap border-r border-solid bg-white/5 px-3 py-[6px] text-sm transition-all [&.active]:font-bold`}
+              title="Dashboard"
             >
-              Logout
-            </div>
+              Dashboard
+            </Link>
+          )}
+        </div>
+
+        <div className="flex items-center">
+          {pathname !== "/dashboard" && (
+            <Link
+              href="/dashboard"
+              className="border-outlinevariant bg-backgroundbg text-background hover:bg-backgroundbg/90 border-l border-solid px-4 py-[6px] text-sm font-bold transition-all"
+            >
+              Launch App
+            </Link>
+          )}
+
+          <div className="border-outlinevariant min-h-[32px] min-w-[85px] border-l border-solid px-2 py-[4px]">
+            <ThemeButtons />
           </div>
-        ) : (
-          <>
-            <div
-              className="border-outlinevariant text-backgroundbg/40 cursor-pointer border-l border-solid px-3 py-[6px] text-sm"
-              onClick={() => setShowLogin(true)}
-            >
-              Login
+
+          {userData ? (
+            <div className="border-outlinevariant flex gap-2 border-l border-solid px-2 py-[4px]">
+              <div className="text-backgroundbg/40 text-sm">
+                Hello, {userData?.user?.user_metadata?.name}
+              </div>
+              <div
+                className="text-backgroundbg/40 cursor-pointer text-sm"
+                onClick={handleLogout}
+              >
+                Logout
+              </div>
             </div>
+          ) : (
+            <>
+              <div
+                className="border-outlinevariant text-backgroundbg/40 cursor-pointer border-l border-solid px-3 py-[6px] text-sm"
+                onClick={() => setShowLogin(true)}
+              >
+                Login
+              </div>
 
-            <AuthLayout open={showLogin} onClose={() => setShowLogin(false)}>
-              <LoginForm
-                setShowSignup={setShowSignup}
-                setShowLogin={setShowLogin}
-              />
-            </AuthLayout>
+              <AuthLayout open={showLogin} onClose={() => setShowLogin(false)}>
+                <LoginForm
+                  setShowSignup={setShowSignup}
+                  setShowLogin={setShowLogin}
+                />
+              </AuthLayout>
 
-            <AuthLayout open={showSignup} onClose={() => setShowSignup(false)}>
-              <SignupForm
-                setShowLogin={setShowLogin}
-                setShowSignup={setShowSignup}
-              />
-            </AuthLayout>
-          </>
-        )}
+              <AuthLayout
+                open={showSignup}
+                onClose={() => setShowSignup(false)}
+              >
+                <SignupForm
+                  setShowLogin={setShowLogin}
+                  setShowSignup={setShowSignup}
+                />
+              </AuthLayout>
+            </>
+          )}
+        </div>
       </div>
     </div>
   );
