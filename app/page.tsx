@@ -7,7 +7,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Planow – Eisenhower Matrix Task Management App",
   description:
-    "Stop being busy. Start being productive. Planow helps you prioritize tasks using the Eisenhower Matrix — Do Now, Schedule, Delegate, or Eliminate.",
+    "Master your productivity with Planow. Stop being busy and start being productive using the Eisenhower Matrix methodology. Prioritize tasks as Urgent or Important and focus on what truly matters.",
   alternates: {
     canonical: "https://planow.app/",
   },

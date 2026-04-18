@@ -18,12 +18,28 @@ export const metadata: Metadata = {
     template: "%s – Planow",
   },
   description:
-    "Planow helps you prioritize tasks using the Eisenhower Matrix. Focus on what's urgent and important — free, no account needed.",
-  keywords:
-    "eisenhower matrix, task management, todo app, productivity app, priority matrix, urgent important matrix, daily planner, organize tasks, to-do list, productivity tools, free task manager",
+    "Master your productivity with Planow. Prioritize tasks using the proven Eisenhower Matrix methodology (Urgent vs. Important). A free, no-account-required daily planner and task manager.",
+  keywords: [
+    "eisenhower matrix",
+    "task management",
+    "todo app",
+    "productivity app",
+    "priority matrix",
+    "urgent important matrix",
+    "daily planner",
+    "organize tasks",
+    "to-do list",
+    "productivity tools",
+    "free task manager",
+    "time management",
+    "decision matrix",
+    "matrix planner",
+  ],
   authors: [{ name: "Yogesh Raj Kabilan" }],
   publisher: "Planow",
   applicationName: "Planow",
+  category: "Productivity",
+  classification: "Task Management",
   metadataBase: new URL("https://planow.app"),
   openGraph: {
     type: "website",
@@ -68,6 +84,11 @@ export const metadata: Metadata = {
       "max-image-preview": "large",
       "max-snippet": -1,
     },
+  },
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: "Planow",
   },
 };
 

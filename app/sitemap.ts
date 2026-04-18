@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://planow.app";
-  const lastModified = new Date("2025-12-21");
+  const lastModified = new Date();
 
   return [
     {
