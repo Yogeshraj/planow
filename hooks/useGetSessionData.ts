@@ -28,7 +28,7 @@ const useGetSessionData = () => {
     const run = async () => {
       const result = await syncLocalToSupabase();
       if (cancelled || !result) return;
-      // await fetchData();
+      await fetchData();
     };
 
     run();

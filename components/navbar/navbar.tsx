@@ -9,11 +9,14 @@ import LoginForm from "../login/login";
 import SignupForm from "../signup/SignupForm";
 import { supabase } from "../../lib/supabase-client";
 import ThemeButtons from "../themeButtons";
+import VerifyEmail from "../verifyEmail";
 
 const Navbar = ({ userData }: any) => {
   const pathname = usePathname();
   const [showLogin, setShowLogin] = useState(false);
   const [showSignup, setShowSignup] = useState(false);
+  const [showVerification, setShowVerification] = useState(false);
+  const [signUpEmail, setSignUpEmail] = useState("");
 
   const handleLogout = async () => {
     const { error } = await supabase.auth.signOut();
@@ -121,6 +124,19 @@ const Navbar = ({ userData }: any) => {
                 <SignupForm
                   setShowLogin={setShowLogin}
                   setShowSignup={setShowSignup}
+                  setSignUpEmail={setSignUpEmail}
+                  setShowVerification={setShowVerification}
+                />
+              </AuthLayout>
+
+              <AuthLayout
+                open={showVerification}
+                onClose={() => setShowVerification(false)}
+              >
+                <VerifyEmail
+                  signUpEmail={signUpEmail}
+                  setShowSignup={setShowSignup}
+                  setShowVerification={setShowVerification}
                 />
               </AuthLayout>
             </>
