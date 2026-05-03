@@ -5,7 +5,12 @@ import Button from "../button";
 import EnterIcon from "../Icons/EnterIcon";
 import GoogleAuth from "../auth/GoogleAuth";
 
-const SignupForm = ({ setShowLogin, setShowSignup }: any) => {
+const SignupForm = ({
+  setShowLogin,
+  setShowSignup,
+  setSignUpEmail,
+  setShowVerification,
+}: any) => {
   const [form, setForm] = useState({
     email: "",
     name: "",
@@ -13,6 +18,8 @@ const SignupForm = ({ setShowLogin, setShowSignup }: any) => {
   });
 
   const [showPassword, setShowPassword] = useState(false);
+  const [signUpError, setSignUpError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -20,7 +27,9 @@ const SignupForm = ({ setShowLogin, setShowSignup }: any) => {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setSignUpError("");
     if (!form.email || !form.name || !form.password) return;
+    setIsLoading(true);
 
     const { data, error } = await supabase.auth.signUp({
       email: form.email,
@@ -34,8 +43,14 @@ const SignupForm = ({ setShowLogin, setShowSignup }: any) => {
 
     if (error) {
       console.log("Singup Error", error);
+      setSignUpError(error?.message);
+      setIsLoading(false);
       return;
     }
+    setSignUpEmail(form.email);
+    setShowSignup(false);
+    setShowVerification(true);
+    setIsLoading(false);
   };
 
   return (
@@ -101,7 +116,16 @@ const SignupForm = ({ setShowLogin, setShowSignup }: any) => {
           .
         </p>
 
-        <Button text="Register" icon={<EnterIcon />} className="mb-4" />
+        {signUpError && (
+          <div className="mb-4 text-center text-red-700">{signUpError}</div>
+        )}
+
+        <Button
+          text="Register"
+          icon={<EnterIcon />}
+          className="mb-4"
+          loading={isLoading}
+        />
       </form>
 
       <div className="text-outline after:bg-backgroundbg/8 relative mb-4 flex items-center justify-center text-center text-sm after:absolute after:top-1/2 after:left-0 after:h-px after:w-full after:content-['']">

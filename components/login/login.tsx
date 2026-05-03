@@ -9,10 +9,13 @@ const LoginForm = ({ setShowSignup, setShowLogin }: any) => {
   const [password, setpassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [signInError, setSignInError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setSignInError("");
     if (!email || !password) return;
+    setIsLoading(true);
 
     const { data, error } = await supabase.auth.signInWithPassword({
       email: email,
@@ -22,9 +25,14 @@ const LoginForm = ({ setShowSignup, setShowLogin }: any) => {
     if (error) {
       console.log("Singup Error", error);
       setSignInError(error?.message);
+      setIsLoading(false);
       return;
     }
-    setShowLogin(false);
+
+    setTimeout(() => {
+      setIsLoading(false);
+      setShowLogin(false);
+    }, 3000);
   };
 
   return (
@@ -65,7 +73,12 @@ const LoginForm = ({ setShowSignup, setShowLogin }: any) => {
           </button>
         </div>
 
-        <Button text="Continue" icon={<EnterIcon />} className="mb-4" />
+        <Button
+          text="Continue"
+          icon={<EnterIcon />}
+          className="mb-4"
+          loading={isLoading}
+        />
       </form>
 
       {signInError && (
